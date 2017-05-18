@@ -24,5 +24,25 @@ namespace ePress
         {
             InitializeComponent();
         }
+
+        private void Dzial_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Drukarnie_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Zamowienia_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Zapis_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
