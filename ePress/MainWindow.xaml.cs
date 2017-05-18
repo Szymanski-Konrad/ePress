@@ -27,7 +27,7 @@ namespace ePress
 
         private void Dzial_Click(object sender, RoutedEventArgs e)
         {
-
+            MessageBox.Show("Działa");
         }
 
         private void Drukarnie_Click(object sender, RoutedEventArgs e)
