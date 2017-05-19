@@ -25,19 +25,22 @@ namespace ePress
             InitializeComponent();
         }
 
-        private void Dzial_Click(object sender, RoutedEventArgs e)
+        private void DzialP_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Działa");
+            Dzial d = new Dzial();
+            d.ShowDialog();
         }
 
-        private void Drukarnie_Click(object sender, RoutedEventArgs e)
+        private void Druk_Click(object sender, RoutedEventArgs e)
         {
-
+            Drukarnie d = new Drukarnie();
+            d.ShowDialog();
         }
 
-        private void Zamowienia_Click(object sender, RoutedEventArgs e)
+        private void zamowienia_Click(object sender, RoutedEventArgs e)
         {
-
+            Zamowienia z = new Zamowienia();
+            z.ShowDialog();
         }
 
         private void Zapis_Click(object sender, RoutedEventArgs e)

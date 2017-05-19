@@ -5,11 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ePress"
         mc:Ignorable="d"
-        Title="ePress" Height="500" Width="150">
-    <StackPanel HorizontalAlignment="Center">
-        <Button x:Name="Dzial" Content="Dział Programowy" Height="50" Click="Dzial_Click"/>
-        <Button x:Name="Drukarnie" Content="Drukarnie" Height="50" Click="Drukarnie_Click"/>
-        <Button x:Name="Zamowienia" Content="Zamówienia" Height="50" Click="Zamowienia_Click"/>
-        <Button x:Name="Zapis" Content="Zapisz dane" Height="50" Click="Zapis_Click"/>
-    </StackPanel>
+        Title="ePress" Height="300" Width="300">
+    <Grid>
+        <Image Height="110" Width="300" VerticalAlignment="Top" Source="ePress.png"/>
+        <WrapPanel VerticalAlignment="Bottom">
+            <Button x:Name="DzialP" Content="Dział Programowy" Height="50" Width="120" Margin="10" Click="DzialP_Click"/>
+            <Button x:Name="Druk" Content="Drukarnie" Height="50" Width="120" Margin="10" Click="Druk_Click"/>
+            <Button x:Name="zamowienia" Content="Zamówienia" Height="50" Width="120" Margin="10" Click="zamowienia_Click"/>
+            <Button x:Name="Zapis" Content="Zapisz dane" Height="50" Width="120" Margin="10" Click="Zapis_Click"/>
+        </WrapPanel>
+    </Grid>
 </Window>

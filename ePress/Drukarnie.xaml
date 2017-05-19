@@ -1,0 +1,21 @@
+﻿<Window x:Class="ePress.Drukarnie"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ePress"
+        mc:Ignorable="d"
+        Title="Drukarnie" Height="300" Width="300">
+    <Grid>
+        <DataGrid>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Produkt"/>
+                <DataGridTextColumn Header="Tytuł"/>
+                <DataGridTextColumn Header="Cena"/>
+                <DataGridTextColumn Header="Nakład"/>
+                <DataGridTextColumn Header="Stan"/>
+                <DataGridTextColumn Header="Drukarnia"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
