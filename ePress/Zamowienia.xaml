@@ -5,17 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ePress"
         mc:Ignorable="d"
-        Title="Zamowienia" Height="260" Width="240">
+        Title="Zamowienia" Height="400" Width="240">
     <Grid>
-        <WrapPanel>
+        <WrapPanel Name="Panel">
             <TextBlock Text="Tytuł" Height="30" Width="100" Margin="5"/>
             <TextBox Text="" Height="30" Width="100" Margin="5"/>
             <TextBlock Text="Typ Książki" Height="30" Width="100" Margin="5"/>
             <ComboBox Height="30" Width="100" Margin="5"/>
             <TextBlock Text="Ilość stron" Height="30" Width="100" Margin="5"/>
             <TextBox Height="30" Width="100" Margin="5"/>
-            <TextBlock Text="Autorzy" Height="30" Width="100" TextWrapping="Wrap" Margin="5"/>
-            <TextBox Height="60" Width="100" TextWrapping="WrapWithOverflow" Margin="5"/>
+            <TextBlock Text="Ilu autorów" Height="30" Width="100" Margin="5"/>
+            <ComboBox Name="Ilu" Height="30" Width="100" Margin="5" SelectionChanged="Ilu_SelectionChanged"/>
+            <TextBox Name="autor1" Height="30" Width="100" Margin="5" Visibility="Hidden"/>
+            <TextBox Name="autor2" Height="30" Width="100" Margin="5" Visibility="Hidden"/>
+            <TextBox Name="autor3" Height="30" Width="100" Margin="5" Visibility="Hidden"/>
+            <TextBox Name="autor4" Height="30" Width="100" Margin="5" Visibility="Hidden"/>
+            <TextBox Name="autor5" Height="30" Width="100" Margin="5" Visibility="Hidden"/>
+            <TextBox Name="autor6" Height="30" Width="100" Margin="5" Visibility="Hidden"/>
+            <TextBox Name="autor7" Height="30" Width="100" Margin="5" Visibility="Hidden"/>
+            <TextBox Name="autor8" Height="30" Width="100" Margin="5" Visibility="Hidden"/>
         </WrapPanel>
     </Grid>
 </Window>

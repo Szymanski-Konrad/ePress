@@ -22,6 +22,33 @@ namespace ePress
         public Zamowienia()
         {
             InitializeComponent();
+            for(int i = 1; i < 5; i++)
+            {
+                Ilu.Items.Add(i);
+            }
+        }
+
+        private void Ilu_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            TextBox t, t1;
+
+            for (int i = 1; i < 9; i += 2)
+            {
+                t = (TextBox)Panel.FindName("autor" + i.ToString());
+                int x = i + 1;
+                t1 = (TextBox)Panel.FindName("autor" + x.ToString());
+
+                if (i <= Int32.Parse(Ilu.SelectedItem.ToString()) * 2)
+                {
+                    t.Visibility = Visibility.Visible;
+                    t1.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    t.Visibility = Visibility.Hidden;
+                    t1.Visibility = Visibility.Hidden;
+                }
+            }
         }
     }
 }
