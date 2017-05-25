@@ -50,5 +50,10 @@ namespace ePress
                 }
             }
         }
+
+        private void Dodaj_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

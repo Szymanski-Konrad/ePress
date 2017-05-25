@@ -10,33 +10,44 @@ namespace ePress
     {
         public int wydajnosc { get; set; }
         public int jakosc { get; set; }
-        List<Zlecenie> kolejka;
-        List<Produkty> coDrukuje;
+        Queue<Zlecenie> kolejka;
+        List<Zlecenie> gotowe;
+        List<string> coDrukuje;
 
         public Drukarnia()
         {
             Random r = new Random();
             wydajnosc = r.Next(3000, 4000);
             jakosc = r.Next(1, 10);
-            kolejka = new List<Zlecenie>();
-            coDrukuje = new List<Produkty>();
+            kolejka = new Queue<Zlecenie>();
+            gotowe = new List<Zlecenie>();
+            coDrukuje = new List<string>();
         }
 
         public void DodajZlecenie(Zlecenie z)
         {
-            kolejka.Add(z);
+            z.stan = "w kolejce";
+            kolejka.Enqueue(z);
+        }
+
+        public void DodajCoDrukuje(string s)
+        {
+            coDrukuje.Add(s);
         }
 
         public void ZglaszanieWydruku()
         {
-
+            if (kolejka.Peek().ileDni == 0)
+            {
+                kolejka.Peek().stan = "wykonane";
+                gotowe.Add(kolejka.Dequeue());
+            }
         }
 
-        public void CzasWydruku()
+        public void CzasWydruku(Zlecenie z)
         {
-
+            double x = z.GetProdukt().strony * z.GetProdukt().naklad / wydajnosc;
+            z.ileDni = (Int16)Math.Round(x);
         }
-
-
     }
 }

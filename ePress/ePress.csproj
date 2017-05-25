@@ -55,12 +55,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Album.cs" />
+    <Compile Include="Autor.cs" />
     <Compile Include="Dane.cs" />
     <Compile Include="Drukarnia.cs" />
+    <Compile Include="Produkt.cs" />
     <Compile Include="Wydawnictwo.cs" />
     <Compile Include="Zamowienia.xaml.cs">
       <DependentUpon>Zamowienia.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Zlecenie.cs" />
     <Page Include="Drukarnie.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

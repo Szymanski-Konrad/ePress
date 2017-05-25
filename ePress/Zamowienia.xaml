@@ -24,6 +24,7 @@
             <TextBox Name="autor6" Height="30" Width="100" Margin="5" Visibility="Hidden"/>
             <TextBox Name="autor7" Height="30" Width="100" Margin="5" Visibility="Hidden"/>
             <TextBox Name="autor8" Height="30" Width="100" Margin="5" Visibility="Hidden"/>
+            <Button Name="Dodaj" FontSize="15" Height="40" Width="150" Content="Dodaj zamówienie" Margin="30,5,5,5" Click="Dodaj_Click"/>
         </WrapPanel>
     </Grid>
 </Window>
