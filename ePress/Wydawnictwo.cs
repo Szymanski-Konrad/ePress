@@ -11,8 +11,8 @@ namespace ePress
         List<Drukarnia> drukarnie;
         List<Zlecenie> zlecenia;
         List<DateTime> terminy;
-        double saldo;
-        int dzien;
+        public double saldo { get; set; }
+        public int dzien { get; set; }
 
         public Wydawnictwo()
         {
@@ -21,6 +21,11 @@ namespace ePress
             terminy = new List<DateTime>();
             saldo = 10000;
             dzien = 0;
+        }
+
+        public List<Drukarnia> GetDrukarnie()
+        {
+
         }
 
         public void CoDrukujeDrukarnia()
@@ -62,6 +67,27 @@ namespace ePress
             zlecenia.Add(z);
         }
 
+        public Drukarnia NajmniejZajeta(string typ)
+        {
+            Drukarnia dr = drukarnie[0];
+            foreach (Drukarnia d in drukarnie)
+            {
+                if (d.zajeta < dr.zajeta && d.CzyMozeDrukowac(typ) == true) dr = d;
+            }
+            return dr;
+        }
+
+        public void PrzydzielZlecenie(Zlecenie z)
+        {
+            Drukarnia d = NajmniejZajeta(z.GetProdukt().GetType().ToString());
+            d.DodajZlecenie(z);
+        }
+
+        public void NowyDzien()
+        {
+            dzien++;
+        }
+
         //sprzedawanie produktu jeśli jest gotowa codziennie aż do wyczerpania nakładu
         public void SprzedazKsiazki(Zlecenie z)
         {
@@ -70,11 +96,22 @@ namespace ePress
                 if (z.GetProdukt().naklad < 1000)
                 {
                     saldo += z.GetProdukt().cena * z.GetProdukt().naklad;
+                    // oddawanie części kasy dla autorów danej książki
+                    foreach (var item in z.GetProdukt().tytul)
+                    {
+
+                    }
                     z.GetProdukt().naklad = 0;
+                    
                 }
                 else
                 {
                     int ilosc = (Int32)Math.Round(z.GetProdukt().naklad * 0.6);
+                    // oddawanie części kasy dla autorów danej książki
+                    foreach (var item in z.GetProdukt().tytul)
+                    {
+
+                    }
                     saldo += z.GetProdukt().cena * ilosc;
                     z.GetProdukt().naklad -= ilosc;
                 }

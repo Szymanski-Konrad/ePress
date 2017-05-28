@@ -20,8 +20,17 @@ namespace ePress
     /// </summary>
     public partial class MainWindow : Window
     {
+        Wydawnictwo w;
+
         public MainWindow()
         {
+            w = new Wydawnictwo();
+            for (int i = 1; i <= 3; i++)
+            {
+                w.KupDrukarnie();
+                MessageBox.Show(w.saldo.ToString());
+            }
+            DataContext = w;
             InitializeComponent();
         }
 

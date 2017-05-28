@@ -10,9 +10,11 @@ namespace ePress
     {
         public int wydajnosc { get; set; }
         public int jakosc { get; set; }
+        public int zajeta { get; set; }
         Queue<Zlecenie> kolejka;
         List<Zlecenie> gotowe;
         List<string> coDrukuje;
+
 
         public Drukarnia()
         {
@@ -33,6 +35,17 @@ namespace ePress
         public void DodajCoDrukuje(string s)
         {
             coDrukuje.Add(s);
+        }
+
+        public bool CzyMozeDrukowac(string s)
+        {
+            if (coDrukuje.Contains(s)) return true;
+            else return false;
+        }
+
+        public List<string> GetCoDrukuje()
+        {
+            return coDrukuje;
         }
 
         public void ZglaszanieWydruku()
