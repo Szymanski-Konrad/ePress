@@ -25,7 +25,7 @@ namespace ePress
 
         public List<Drukarnia> GetDrukarnie()
         {
-
+            return drukarnie;
         }
 
         public void CoDrukujeDrukarnia()
