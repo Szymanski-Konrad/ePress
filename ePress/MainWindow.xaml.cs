@@ -24,14 +24,13 @@ namespace ePress
 
         public MainWindow()
         {
+            InitializeComponent();
             w = new Wydawnictwo();
             for (int i = 1; i <= 3; i++)
             {
                 w.KupDrukarnie();
-                MessageBox.Show(w.saldo.ToString());
             }
             DataContext = w;
-            InitializeComponent();
         }
 
         private void DzialP_Click(object sender, RoutedEventArgs e)
@@ -55,6 +54,11 @@ namespace ePress
         private void Zapis_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void Nowy_Click(object sender, RoutedEventArgs e)
+        {
+            w.Dzien += 1;
         }
     }
 }

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Windows;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,13 +8,32 @@ using System.Threading.Tasks;
 
 namespace ePress
 {
-    class Wydawnictwo
+    class Wydawnictwo : INotifyPropertyChanged
     {
         List<Drukarnia> drukarnie;
         List<Zlecenie> zlecenia;
         List<DateTime> terminy;
         public double saldo { get; set; }
-        public int dzien { get; set; }
+        private int dzien;
+        public int Dzien
+        {
+            get { return dzien; }
+            set
+            {
+                dzien = value;
+                OnPropertyChanged(nameof(Dzien));
+            }
+        }
+
+        //umożliwienie automatycznego aktualizowania się wyświetlanej wartości
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string number)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(number));
+            }
+        }
 
         public Wydawnictwo()
         {
@@ -43,7 +64,9 @@ namespace ePress
         {
             Random r = new Random();
             Drukarnia d = new Drukarnia();
-            double cena = 2000 * (d.jakosc / 5) * (d.wydajnosc / 3500);
+            double cena = 2000 * (d.jakosc / 5.0) * (d.wydajnosc / 3500.0);
+            cena = Math.Round(cena);
+            MessageBox.Show(cena.ToString());
             saldo -= cena;
             drukarnie.Add(d);
         }
@@ -81,11 +104,6 @@ namespace ePress
         {
             Drukarnia d = NajmniejZajeta(z.GetProdukt().GetType().ToString());
             d.DodajZlecenie(z);
-        }
-
-        public void NowyDzien()
-        {
-            dzien++;
         }
 
         //sprzedawanie produktu jeśli jest gotowa codziennie aż do wyczerpania nakładu
