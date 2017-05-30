@@ -14,11 +14,11 @@ namespace ePress
         public int ocena { get; set; }
         public int strony { get; set; }
 
-        //List<Autor> autorzy;
+        List<Autor> autorzy;
 
-        //public Produkt()
-        //{
-       //     autorzy = new List<Autor>();
-       // }
+        public Produkt()
+        {
+            autorzy = new List<Autor>();
+        }
     }
 }

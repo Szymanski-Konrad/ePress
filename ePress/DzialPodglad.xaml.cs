@@ -39,22 +39,26 @@ namespace ePress
 
         private void Dodaj_Click(object sender, RoutedEventArgs e)
         {
-
+            Umowy u = new Umowy(1);
+            u.ShowDialog();
         }
 
         private void Usun_Click(object sender, RoutedEventArgs e)
         {
-
+            Umowy u = new Umowy(2);
+            u.ShowDialog();
         }
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
-
+            Umowy u = new Umowy(3);
+            u.ShowDialog();
         }
 
         private void Del_Click(object sender, RoutedEventArgs e)
         {
-
+            Umowy u = new Umowy(4);
+            u.ShowDialog();
         }
     }
 }

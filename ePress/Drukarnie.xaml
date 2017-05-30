@@ -11,36 +11,36 @@
             <TabItem Header="Drukarnia I" FontSize="14" Foreground="Green">
                 <DataGrid Name="pierwsza" ItemsSource="{Binding}">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Tytuł" Binding="{Binding tytul}"/>
-                        <DataGridTextColumn Header="Cena" Binding="{Binding cena}"/>
-                        <DataGridTextColumn Header="Nakład" Binding="{Binding naklad}"/>
-                        <DataGridTextColumn Header="Strony" Binding="{Binding strony}"/>
-                        <DataGridTextColumn Header="Stan" Binding="{Binding stan}"/>
-                        <DataGridTextColumn Header="Ile Dni" Binding="{Binding iledni}"/>
+                        <DataGridTextColumn Header="Tytuł"  Width="*" Binding="{Binding tytul}"/>
+                        <DataGridTextColumn Header="Cena" Width="*" Binding="{Binding cena}"/>
+                        <DataGridTextColumn Header="Nakład" Width="*" Binding="{Binding naklad}"/>
+                        <DataGridTextColumn Header="Strony" Width="*" Binding="{Binding strony}"/>
+                        <DataGridTextColumn Header="Stan" Width="*" Binding="{Binding stan}"/>
+                        <DataGridTextColumn Header="Ile Dni" Width="*" Binding="{Binding iledni}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
             <TabItem Header="Drukarnia II" FontSize="14" Foreground="Green">
                 <DataGrid Name="druga" ItemsSource="{Binding}">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Tytuł" Binding="{Binding tytul}"/>
-                        <DataGridTextColumn Header="Cena" Binding="{Binding cena}"/>
-                        <DataGridTextColumn Header="Nakład" Binding="{Binding naklad}"/>
-                        <DataGridTextColumn Header="Strony" Binding="{Binding strony}"/>
-                        <DataGridTextColumn Header="Stan" Binding="{Binding stan}"/>
-                        <DataGridTextColumn Header="Ile Dni" Binding="{Binding iledni}"/>
+                        <DataGridTextColumn Header="Tytuł"  Width="*" Binding="{Binding tytul}"/>
+                        <DataGridTextColumn Header="Cena" Width="*" Binding="{Binding cena}"/>
+                        <DataGridTextColumn Header="Nakład" Width="*" Binding="{Binding naklad}"/>
+                        <DataGridTextColumn Header="Strony" Width="*" Binding="{Binding strony}"/>
+                        <DataGridTextColumn Header="Stan" Width="*" Binding="{Binding stan}"/>
+                        <DataGridTextColumn Header="Ile Dni" Width="*" Binding="{Binding iledni}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
             <TabItem Header="Drukarnia III" FontSize="14" Foreground="Green">
                 <DataGrid Name="trzecia" ItemsSource="{Binding}">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Tytuł" Binding="{Binding tytul}"/>
-                        <DataGridTextColumn Header="Cena" Binding="{Binding cena}"/>
-                        <DataGridTextColumn Header="Nakład" Binding="{Binding naklad}"/>
-                        <DataGridTextColumn Header="Strony" Binding="{Binding strony}"/>
-                        <DataGridTextColumn Header="Stan" Binding="{Binding stan}"/>
-                        <DataGridTextColumn Header="Ile Dni" Binding="{Binding iledni}"/>
+                        <DataGridTextColumn Header="Tytuł"  Width="*" Binding="{Binding tytul}"/>
+                        <DataGridTextColumn Header="Cena" Width="*" Binding="{Binding cena}"/>
+                        <DataGridTextColumn Header="Nakład" Width="*" Binding="{Binding naklad}"/>
+                        <DataGridTextColumn Header="Strony" Width="*" Binding="{Binding strony}"/>
+                        <DataGridTextColumn Header="Stan" Width="*" Binding="{Binding stan}"/>
+                        <DataGridTextColumn Header="Ile Dni" Width="*" Binding="{Binding iledni}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>

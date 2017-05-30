@@ -23,7 +23,7 @@
         </Grid>
 
         <Grid x:Name="U">
-            <DataGrid x:Name="Umowy" Height="220" VerticalAlignment="Top">
+            <DataGrid x:Name="umowy" Height="220" VerticalAlignment="Top">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Imie" Width="*" Binding="{Binding Imie}"/>
                     <DataGridTextColumn Header="Nazwisko" Width="*" Binding="{Binding Nazwisko}"/>

@@ -64,6 +64,9 @@
     <Compile Include="Start.xaml.cs">
       <DependentUpon>Start.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Umowy.xaml.cs">
+      <DependentUpon>Umowy.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Wydawnictwo.cs" />
     <Compile Include="Zamowienia.xaml.cs">
       <DependentUpon>Zamowienia.xaml</DependentUpon>
@@ -103,6 +106,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Start.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Umowy.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
