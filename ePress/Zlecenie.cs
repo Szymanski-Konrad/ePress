@@ -6,22 +6,21 @@ using System.Threading.Tasks;
 
 namespace ePress
 {
-    class Zlecenie
+    public class Zlecenie
     {
         Drukarnia drukarnia;
         Produkt produkt;
         public string stan { get; set; }
         public int ileDni { get; set; }
 
-        public Zlecenie()
+        public Zlecenie(Drukarnia d, Produkt p)
         {
-            drukarnia = new Drukarnia();
-            produkt = new Produkt();
+            drukarnia = d;
+            produkt = p;
         }
 
         public Produkt GetProdukt()
         {
-            stan = "czeka";
             return produkt;
         }
     }

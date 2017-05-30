@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ePress
 {
-    class Drukarnia
+    public class Drukarnia
     {
         public int wydajnosc { get; set; }
         public int jakosc { get; set; }
@@ -46,6 +46,24 @@ namespace ePress
         public List<string> GetCoDrukuje()
         {
             return coDrukuje;
+        }
+
+        public Queue<Zlecenie> GetKolejka()
+        {
+            return kolejka;
+        }
+
+        public List<Zlecenie> GetGotowe()
+        {
+            return gotowe;
+        }
+
+        public List<Zlecenie> GetZlecenia()
+        {
+            List<Zlecenie> zlecenia = new List<Zlecenie>();
+            foreach (Zlecenie z in kolejka) zlecenia.Add(z);
+            foreach (Zlecenie z in gotowe) zlecenia.Add(z);
+            return zlecenia;
         }
 
         public void ZglaszanieWydruku()

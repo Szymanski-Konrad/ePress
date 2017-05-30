@@ -58,6 +58,7 @@
     <Compile Include="Album.cs" />
     <Compile Include="Autor.cs" />
     <Compile Include="Dane.cs" />
+    <Compile Include="DoWyswietlenia.cs" />
     <Compile Include="Drukarnia.cs" />
     <Compile Include="Produkt.cs" />
     <Compile Include="Start.xaml.cs">

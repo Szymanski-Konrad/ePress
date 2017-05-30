@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ePress
 {
-    class Wydawnictwo : INotifyPropertyChanged
+    public class Wydawnictwo : INotifyPropertyChanged
     {
         List<Drukarnia> drukarnie;
         List<Zlecenie> zlecenia;
@@ -64,6 +64,7 @@ namespace ePress
         {
             Random r = new Random();
             Drukarnia d = new Drukarnia();
+            d.DodajZlecenie(new Zlecenie(d, new Produkt() { cena = 300, naklad = 500, ocena = 5, strony = 200, tytul = "xd" }) { ileDni = 50, stan = "w kolejce" });
             double cena = 2000 * (d.jakosc / 5.0) * (d.wydajnosc / 3500.0);
             cena = Math.Round(cena);
             MessageBox.Show(cena.ToString());

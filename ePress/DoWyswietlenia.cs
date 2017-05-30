@@ -6,19 +6,14 @@ using System.Threading.Tasks;
 
 namespace ePress
 {
-    public class Produkt
+    //klasa pomocnicza służąca do generowania widoku zlecenia
+    class DoWyswietlenia
     {
         public string tytul { get; set; }
         public int cena { get; set; }
         public int naklad { get; set; }
-        public int ocena { get; set; }
         public int strony { get; set; }
-
-        //List<Autor> autorzy;
-
-        //public Produkt()
-        //{
-       //     autorzy = new List<Autor>();
-       // }
+        public string stan { get; set; }
+        public int iledni { get; set; }
     }
 }

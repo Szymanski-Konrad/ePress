@@ -19,8 +19,11 @@ namespace ePress
     /// </summary>
     public partial class DzialPodglad : Window
     {
-        public DzialPodglad(int x)
+        MainWindow page;
+
+        public DzialPodglad(int x, MainWindow start)
         {
+            page = start;
             InitializeComponent();
             if (x == 1)
             {

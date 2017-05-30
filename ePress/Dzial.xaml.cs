@@ -19,20 +19,23 @@ namespace ePress
     /// </summary>
     public partial class Dzial : Window
     {
-        public Dzial()
+        MainWindow page;
+
+        public Dzial(MainWindow start)
         {
+            page = start;
             InitializeComponent();
         }
 
         private void Autorzy_Click(object sender, RoutedEventArgs e)
         {
-            DzialPodglad dp = new DzialPodglad(1);
+            DzialPodglad dp = new DzialPodglad(1, page);
             dp.ShowDialog();
         }
 
         private void Umowy_Click(object sender, RoutedEventArgs e)
         {
-            DzialPodglad dp = new DzialPodglad(2);
+            DzialPodglad dp = new DzialPodglad(2, page);
             dp.ShowDialog();
         }
     }

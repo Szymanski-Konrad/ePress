@@ -19,9 +19,54 @@ namespace ePress
     /// </summary>
     public partial class Drukarnie : Window
     {
-        public Drukarnie()
+        MainWindow page;
+
+        public Drukarnie(MainWindow start)
         {
+            page = start;
             InitializeComponent();
+
+            //pokazanie zleceń realizowanych przez pierwszą drukarnię
+            foreach (Zlecenie z in start.GetWydawnictwo().GetDrukarnie()[0].GetZlecenia())
+            {
+                DoWyswietlenia dw = new DoWyswietlenia();
+                dw.cena = z.GetProdukt().cena;
+                dw.iledni = z.ileDni;
+                dw.naklad = z.GetProdukt().naklad;
+                dw.stan = z.stan;
+                dw.strony = z.GetProdukt().strony;
+                dw.tytul = z.GetProdukt().tytul;
+
+                pierwsza.Items.Add(dw);
+            }
+
+            //pokazanie zleceń realizowanych przez drugą drukarnię
+            foreach (Zlecenie z in start.GetWydawnictwo().GetDrukarnie()[1].GetZlecenia())
+            {
+                DoWyswietlenia dw = new DoWyswietlenia();
+                dw.cena = z.GetProdukt().cena;
+                dw.iledni = z.ileDni;
+                dw.naklad = z.GetProdukt().naklad;
+                dw.stan = z.stan;
+                dw.strony = z.GetProdukt().strony;
+                dw.tytul = z.GetProdukt().tytul;
+
+                druga.Items.Add(dw);
+            }
+
+            //pokazanie zleceń realizowanych przez trzecią drukarnię
+            foreach (Zlecenie z in start.GetWydawnictwo().GetDrukarnie()[2].GetZlecenia())
+            {
+                DoWyswietlenia dw = new DoWyswietlenia();
+                dw.cena = z.GetProdukt().cena;
+                dw.iledni = z.ileDni;
+                dw.naklad = z.GetProdukt().naklad;
+                dw.stan = z.stan;
+                dw.strony = z.GetProdukt().strony;
+                dw.tytul = z.GetProdukt().tytul;
+
+                trzecia.Items.Add(dw);
+            }
         }
     }
 }

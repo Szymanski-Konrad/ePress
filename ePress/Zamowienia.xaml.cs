@@ -19,8 +19,11 @@ namespace ePress
     /// </summary>
     public partial class Zamowienia : Window
     {
-        public Zamowienia()
+        MainWindow page;
+
+        public Zamowienia(MainWindow start)
         {
+            page = start;
             InitializeComponent();
             for(int i = 1; i < 5; i++)
             {

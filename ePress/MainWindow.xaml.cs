@@ -33,21 +33,26 @@ namespace ePress
             DataContext = w;
         }
 
+        public Wydawnictwo GetWydawnictwo()
+        { 
+            return w;
+        }
+
         private void DzialP_Click(object sender, RoutedEventArgs e)
         {
-            Dzial d = new Dzial();
+            Dzial d = new Dzial(this);
             d.ShowDialog();
         }
 
         private void Druk_Click(object sender, RoutedEventArgs e)
         {
-            Drukarnie d = new Drukarnie();
+            Drukarnie d = new Drukarnie(this);
             d.ShowDialog();
         }
 
         private void zamowienia_Click(object sender, RoutedEventArgs e)
         {
-            Zamowienia z = new Zamowienia();
+            Zamowienia z = new Zamowienia(this);
             z.ShowDialog();
         }
 
