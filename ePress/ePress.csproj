@@ -60,10 +60,13 @@
     <Compile Include="Dane.cs" />
     <Compile Include="DoWyswietlenia.cs" />
     <Compile Include="Drukarnia.cs" />
+    <Compile Include="ODzielo.cs" />
+    <Compile Include="OPrace.cs" />
     <Compile Include="Produkt.cs" />
     <Compile Include="Start.xaml.cs">
       <DependentUpon>Start.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Umowa.cs" />
     <Compile Include="Umowy.xaml.cs">
       <DependentUpon>Umowy.xaml</DependentUpon>
     </Compile>
@@ -80,10 +83,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DzialPodglad.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -97,9 +96,6 @@
     </Compile>
     <Compile Include="Dzial.xaml.cs">
       <DependentUpon>Dzial.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="DzialPodglad.xaml.cs">
-      <DependentUpon>DzialPodglad.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

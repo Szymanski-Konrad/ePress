@@ -29,7 +29,7 @@ namespace ePress
             //pokazanie zleceń realizowanych przez pierwszą drukarnię
             foreach (Zlecenie z in start.GetWydawnictwo().GetDrukarnie()[0].GetZlecenia())
             {
-                DoWyswietlenia dw = new DoWyswietlenia();
+                DoWyswietlenia.DlaDrukarni dw = new DoWyswietlenia.DlaDrukarni();
                 dw.cena = z.GetProdukt().cena;
                 dw.iledni = z.ileDni;
                 dw.naklad = z.GetProdukt().naklad;
@@ -43,7 +43,7 @@ namespace ePress
             //pokazanie zleceń realizowanych przez drugą drukarnię
             foreach (Zlecenie z in start.GetWydawnictwo().GetDrukarnie()[1].GetZlecenia())
             {
-                DoWyswietlenia dw = new DoWyswietlenia();
+                DoWyswietlenia.DlaDrukarni dw = new DoWyswietlenia.DlaDrukarni();
                 dw.cena = z.GetProdukt().cena;
                 dw.iledni = z.ileDni;
                 dw.naklad = z.GetProdukt().naklad;
@@ -57,7 +57,7 @@ namespace ePress
             //pokazanie zleceń realizowanych przez trzecią drukarnię
             foreach (Zlecenie z in start.GetWydawnictwo().GetDrukarnie()[2].GetZlecenia())
             {
-                DoWyswietlenia dw = new DoWyswietlenia();
+                DoWyswietlenia.DlaDrukarni dw = new DoWyswietlenia.DlaDrukarni();
                 dw.cena = z.GetProdukt().cena;
                 dw.iledni = z.ileDni;
                 dw.naklad = z.GetProdukt().naklad;

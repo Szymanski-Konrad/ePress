@@ -5,31 +5,35 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ePress"
         mc:Ignorable="d"
-        Title="Umowy" Height="170" Width="210">
+        Title="Umowy" Height="210" Width="210">
     <Grid>
         <WrapPanel Name="dodajautora" Visibility="Hidden">
             <TextBlock Name="Imie" Text="Imie:" Width="70" Height="20" FontSize="14" Margin="5"/>
-            <TextBox Width="80" Height="30" Margin="5"/>
+            <TextBox Name="dodajimie" Width="80" Height="30" Margin="5"/>
             <TextBlock Name="Nazwisko" Text="Nazwisko:" Width="70" Height="20" FontSize="14" Margin="5"/>
-            <TextBox Width="80" Height="30" Margin="5"/>
-            <Button Name="DodajAutora" Content="Dodaj" FontSize="15" Height="40" Width="120" Margin="30,10,10,0"/>
+            <TextBox Name="dodajnazwisko" Width="80" Height="30" Margin="5"/>
+            <TextBlock Text="Co pisze: " FontSize="14" Height="30" Width="70" Margin="5"/>
+            <ComboBox Name="pisze" Height="30" Width="80" Margin="5"/>
+            <Button Name="DodajAutora" Content="Dodaj" FontSize="15" Height="40" Width="120" Margin="30,10,10,0" Click="DodajAutora_Click"/>
         </WrapPanel>
         <WrapPanel Name="usunautora" HorizontalAlignment="Center" Visibility="Hidden">
             <ComboBox Name="autorzy" Height="40" Width="140" Margin="10"/>
-            <Button Name="UsunAutora" Content="Usuń" FontSize="15" Height="40" Width="120" Margin="20,10,10,10"/>
+            <Button Name="UsunAutora" Content="Usuń" FontSize="15" Height="40" Width="120" Margin="20,10,10,10" Click="UsunAutora_Click"/>
         </WrapPanel>
-        <WrapPanel Name="dodajumowe" HorizontalAlignment="Center" Visibility="Hidden">
+        <WrapPanel Name="dodajumowe" HorizontalAlignment="Center" Visibility="Visible">
             <TextBlock Text="Typ umowy: " FontSize="14" Height="30" Width="80" Margin="5"/>
-            <ComboBox Name="Typ" Height="30" Width="90" Margin="5"/>
+            <ComboBox Name="Typ" Height="30" Width="90" Margin="5" SelectionChanged="Typ_SelectionChanged"/>
             <TextBlock Text="Autor: " FontSize="14" Height="30" Width="80" Margin="5"/>
             <ComboBox Name="JakiAutor" Height="30" Width="90" Margin="5"/>
-            <Button Name="Zawrzyj" Height="40" Width="120" Content="Zawrzyj umowę" FontSize="14" Margin="30,5,5,5"/>
+            <TextBlock Name="Ukryty" Text="" Height="30" FontSize="14" Width="80" Margin="5"/>
+            <TextBox Name="Stawka" Height="30" Width="90" Margin="5" Visibility="Hidden"/>
+            <Button Name="Zawrzyj" Height="40" Width="120" Content="Zawrzyj umowę" FontSize="14" Margin="30,5,5,5" Click="Zawrzyj_Click"/>
         </WrapPanel>
         <WrapPanel Name="usunumowe" HorizontalAlignment="Center" Visibility="Hidden">
             <TextBlock Text="Wybierz autora, z którym" FontSize="15"/>
             <TextBlock Text="chcesz rozwiązać umowę:" FontSize="15"/>
             <ComboBox Name="WybierzAutora" Height="30" Width="140" Margin="15,5,5,5"/>
-            <Button Name="Rowiaz" Height="40" Width="120" Content="Rozwiąż umowę" FontSize="14" Margin="30,5,5,5"/>
+            <Button Name="Rowiaz" Height="40" Width="120" Content="Rozwiąż umowę" FontSize="14" Margin="30,5,5,5" Click="Rowiaz_Click"/>
         </WrapPanel>
     </Grid>
 </Window>

@@ -20,23 +20,68 @@ namespace ePress
     public partial class Dzial : Window
     {
         MainWindow page;
+        List<Autor> listaAutorow;
 
         public Dzial(MainWindow start)
         {
             page = start;
             InitializeComponent();
+            listaAutorow = new List<Autor>();
         }
 
-        private void Autorzy_Click(object sender, RoutedEventArgs e)
+        public void UstawDataContext(Autor a)
         {
-            DzialPodglad dp = new DzialPodglad(1, page);
-            dp.ShowDialog();
+            DoWyswietlenia.DlaAutorow d = new DoWyswietlenia.DlaAutorow();
+            d.imie = a.Imie;
+            d.nazwisko = a.Nazwisko;
+            d.sprzedaz = a.sprzedaz;
+            d.copisze = a.coPisze;
+            d.wynagrodzenie = a.PokazUmowe().stawka.ToString();
+            d.zysk = a.konto;
+            if (a.PokazUmowe().GetType() == typeof(OPrace)) d.umowa = "O Prace";
+            if (a.PokazUmowe().GetType() == typeof(ODzielo))
+            {
+                d.umowa = "O Dzieło";
+                d.wynagrodzenie += "%";
+            }
+
+            Autors.Items.Add(d);
+            Autors.Items.Refresh();
         }
 
-        private void Umowy_Click(object sender, RoutedEventArgs e)
+        public void DodajAutora(Autor a)
         {
-            DzialPodglad dp = new DzialPodglad(2, page);
-            dp.ShowDialog();
+            listaAutorow.Add(a);
+            UstawDataContext(a);
+        }
+
+        public List<Autor> GetAutorzy()
+        {
+            return listaAutorow;
+        }
+
+        private void Dodaj_Click(object sender, RoutedEventArgs e)
+        {
+            Umowy u = new Umowy(1, this);
+            u.ShowDialog();
+        }
+
+        private void Usun_Click(object sender, RoutedEventArgs e)
+        {
+            Umowy u = new Umowy(2, this);
+            u.ShowDialog();
+        }
+
+        private void Add_Click(object sender, RoutedEventArgs e)
+        {
+            Umowy u = new Umowy(3, this);
+            u.ShowDialog();
+        }
+
+        private void Del_Click(object sender, RoutedEventArgs e)
+        {
+            Umowy u = new Umowy(4, this);
+            u.ShowDialog();
         }
     }
 }

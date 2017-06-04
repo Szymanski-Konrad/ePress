@@ -21,11 +21,13 @@ namespace ePress
     public partial class MainWindow : Window
     {
         Wydawnictwo w;
+        Dzial dzial;
 
         public MainWindow()
         {
             InitializeComponent();
             w = new Wydawnictwo();
+            dzial = new Dzial(this);
             for (int i = 1; i <= 3; i++)
             {
                 w.KupDrukarnie();
@@ -42,6 +44,7 @@ namespace ePress
         {
             Dzial d = new Dzial(this);
             d.ShowDialog();
+            dzial = d;
         }
 
         private void Druk_Click(object sender, RoutedEventArgs e)
