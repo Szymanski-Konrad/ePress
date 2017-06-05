@@ -17,7 +17,7 @@ namespace ePress
             public int strony { get; set; }
             public string stan { get; set; }
             public int iledni { get; set; }
-            //public List<Autor> autorzy { get; set; }
+            public string typ { get; set; }
         }
 
         public class DlaAutorow

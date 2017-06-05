@@ -65,6 +65,13 @@ namespace ePress
             }
         } 
 
+        void SprawdzStr()
+        {
+            string s = "";
+            foreach (char ch in str.Text) if (Char.IsNumber(ch)) s += ch;
+            str.Text = s;
+        }
+
         private void Ilu_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             TextBox t, t1;
@@ -123,34 +130,45 @@ namespace ePress
 
         private void Dodaj_Click(object sender, RoutedEventArgs e)
         {
+            if (t.Text == "") { MessageBox.Show("Podaj tytuł"); return; }
+            if (typy.SelectedItem == null) { MessageBox.Show("Wybierz typ produktu"); return; }
+            if (str.Text == "") { MessageBox.Show("Podaj ilość stron"); return; }
+            if (Ilu.SelectedItem == null) { MessageBox.Show("Wybierz ilość autorów"); return; }
             TextBox t1, t2;
             ComboBox c;
             Zlecenie z = new Zlecenie() { stan = "czeka" };
             if (typy.SelectedItem.ToString() == "Miesiecznik")
             {
-                z.UstawProdukt(new Miesiecznik(30, page.GetWydawnictwo().Dzien) { tytul = t.Text, strony = Int32.Parse(str.Text), naklad = 8000, cena = 10 });
+                SprawdzStr();
+                z.UstawProdukt(new Miesiecznik(30) { tytul = t.Text, strony = Int32.Parse(str.Text), naklad = 8000, cena = 10 });
                 page.GetWydawnictwo().PrzyjmijZamowienie(z);
                 for (int i = 1; i <= (Int32)Ilu.SelectedItem; i ++)
                 {
                     c = (ComboBox)Panel.FindName("combo" + i.ToString());
+                    if (c.SelectedItem == null) { MessageBox.Show("Wybierz autora"); return; }
                     Autor a = page.GetLista().Find(x => x.Imie + " " + x.Nazwisko == c.SelectedItem.ToString());
+                    a.dzielo = z.GetProdukt().tytul;
                     z.GetProdukt().DodajAutora(a);
                 }
             }
             if (typy.SelectedItem.ToString() == "Tygodnik")
             {
-                z.UstawProdukt(new Tygodnik(7, page.GetWydawnictwo().Dzien) { tytul = t.Text, strony = Int32.Parse(str.Text), naklad = 2000, cena = 2 });
+                SprawdzStr();
+                z.UstawProdukt(new Tygodnik(7) { tytul = t.Text, strony = Int32.Parse(str.Text), naklad = 2000, cena = 2 });
                 page.GetWydawnictwo().PrzyjmijZamowienie(z);
                 for (int i = 1; i <= (Int32)Ilu.SelectedItem; i++)
                 {
                     c = (ComboBox)Panel.FindName("combo" + i.ToString());
+                    if (c.SelectedItem == null) { MessageBox.Show("Wybierz autora"); return; }
                     Autor a = page.GetLista().Find(x => x.Imie + " " + x.Nazwisko == c.SelectedItem.ToString());
+                    a.dzielo = z.GetProdukt().tytul;
                     z.GetProdukt().DodajAutora(a);
                 }
             }
             if (typy.SelectedItem.ToString() == "Romans")
             {
-                z.UstawProdukt(new Romans() { tytul = t.Text, dataWydania = Int32.Parse(page.Dzien.Text), strony = Int32.Parse(str.Text) });
+                SprawdzStr();
+                z.UstawProdukt(new Romans() { tytul = t.Text, strony = Int32.Parse(str.Text) });
                 page.GetWydawnictwo().CzytajKsiazke(z);
                 page.GetWydawnictwo().UstalCene(z);
                 page.GetWydawnictwo().PrzyjmijZamowienie(z);
@@ -158,15 +176,18 @@ namespace ePress
                 {
                     int x = i + 1;
                     t1 = (TextBox)Panel.FindName("autor" + i.ToString()); t2 = (TextBox)Panel.FindName("autor" + x.ToString());
+                    if (t1.Text == "" || t2.Text == "") { MessageBox.Show("Uzupełnij dane autora"); return; }
                     Autor a = new Autor() { Imie = t1.Text, Nazwisko = t2.Text, coPisze = typy.SelectedItem.ToString() };
                     a.DodajUmowe(new ODzielo() { stawka = 10 });
+                    a.dzielo = z.GetProdukt().tytul;
                     page.DodajAutoraDoListy(a);
                     z.GetProdukt().DodajAutora(a);
                 }
             }
             if (typy.SelectedItem.ToString() == "Sensacja")
             {
-                z.UstawProdukt(new Sensacja() { tytul = t.Text, dataWydania = Int32.Parse(page.Dzien.Text), strony = Int32.Parse(str.Text) });
+                SprawdzStr();
+                z.UstawProdukt(new Sensacja() { tytul = t.Text, strony = Int32.Parse(str.Text) });
                 page.GetWydawnictwo().CzytajKsiazke(z);
                 page.GetWydawnictwo().UstalCene(z);
                 page.GetWydawnictwo().PrzyjmijZamowienie(z);
@@ -174,15 +195,18 @@ namespace ePress
                 {
                     int x = i + 1;
                     t1 = (TextBox)Panel.FindName("autor" + i.ToString()); t2 = (TextBox)Panel.FindName("autor" + x.ToString());
+                    if (t1.Text == "" || t2.Text == "") { MessageBox.Show("Uzupełnij dane autora"); return; }
                     Autor a = new Autor() { Imie = t1.Text, Nazwisko = t2.Text, coPisze = typy.SelectedItem.ToString() };
                     a.DodajUmowe(new ODzielo() { stawka = 10 });
+                    a.dzielo = z.GetProdukt().tytul;
                     page.DodajAutoraDoListy(a);
                     z.GetProdukt().DodajAutora(a);
                 }
             }
             if (typy.SelectedItem.ToString() == "Album")
             {
-                z.UstawProdukt(new Album() { tytul = t.Text, dataWydania = Int32.Parse(page.Dzien.Text), strony = Int32.Parse(str.Text) });
+                SprawdzStr();
+                z.UstawProdukt(new Album() { tytul = t.Text, strony = Int32.Parse(str.Text) });
                 page.GetWydawnictwo().CzytajKsiazke(z);
                 page.GetWydawnictwo().UstalCene(z);
                 page.GetWydawnictwo().PrzyjmijZamowienie(z);
@@ -190,8 +214,10 @@ namespace ePress
                 {
                     int x = i + 1;
                     t1 = (TextBox)Panel.FindName("autor" + i.ToString()); t2 = (TextBox)Panel.FindName("autor" + x.ToString());
+                    if (t1.Text == "" || t2.Text == "") { MessageBox.Show("Uzupełnij dane autora"); return; }
                     Autor a = new Autor() { Imie = t1.Text, Nazwisko = t2.Text, coPisze = typy.SelectedItem.ToString() };
                     a.DodajUmowe(new ODzielo() { stawka = 10 });
+                    a.dzielo = z.GetProdukt().tytul;
                     page.DodajAutoraDoListy(a);
                     z.GetProdukt().DodajAutora(a);
                 }

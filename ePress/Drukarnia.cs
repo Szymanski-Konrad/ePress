@@ -15,20 +15,23 @@ namespace ePress
         List<Zlecenie> gotowe;
         List<string> coDrukuje;
 
-
         public Drukarnia()
         {
             Random r = new Random();
-            wydajnosc = r.Next(30000, 40000);
+            wydajnosc = r.Next(30000, 50000);
             jakosc = r.Next(1, 10);
+            System.Threading.Thread.Sleep(500);
             kolejka = new Queue<Zlecenie>();
             gotowe = new List<Zlecenie>();
             coDrukuje = new List<string>();
             zajeta = 0;
-            DodajCoDrukuje("Miesiecznik");
-            DodajCoDrukuje("Tygodnik");
-            DodajCoDrukuje("Romans");
-            DodajCoDrukuje("Sensacja");
+            if (coDrukuje.Count < 2)
+            {
+                DodajCoDrukuje("Miesiecznik");
+                DodajCoDrukuje("Tygodnik");
+                DodajCoDrukuje("Romans");
+                DodajCoDrukuje("Sensacja");
+            }
         }
 
         public void DodajZlecenie(Zlecenie z)
@@ -79,6 +82,7 @@ namespace ePress
                 kolejka.Peek().stan = "wykonane";
                 gotowe.Add(kolejka.Dequeue());
             }
+            if (kolejka.Count > 0) kolejka.Peek().stan = "drukowanie";
         }
 
         public void CzasWydruku(Zlecenie z)

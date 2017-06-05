@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,22 @@ namespace ePress
         public Start()
         {
             InitializeComponent();
+            if (SprawdzPliki() == true)
+            {
+                MainWindow mw = new MainWindow(1);
+                this.Close();
+                mw.ShowDialog();
+            }
+        }
+
+        public bool SprawdzPliki()
+        {
+            if (!File.Exists("autorzy.txt")) return false;
+            if (!File.Exists("drukarnia1.txt")) return false;
+            if (!File.Exists("drukarnia2.txt")) return false;
+            if (!File.Exists("drukarnia3.txt")) return false;
+            if (!File.Exists("info.txt")) return false;
+            return true;
         }
 
         private void Pierwsza_Click(object sender, RoutedEventArgs e)
@@ -42,7 +59,7 @@ namespace ePress
 
         private void Trzecia_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mw = new MainWindow();
+            MainWindow mw = new MainWindow(0);
             this.Close();
             mw.ShowDialog();
         }

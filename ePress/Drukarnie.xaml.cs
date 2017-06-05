@@ -36,6 +36,7 @@ namespace ePress
                 dw.stan = z.stan;
                 dw.strony = z.GetProdukt().strony;
                 dw.tytul = z.GetProdukt().tytul;
+                dw.typ = z.GetProdukt().GetType().Name;
 
                 pierwsza.Items.Add(dw);
             }

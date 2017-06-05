@@ -9,22 +9,15 @@ namespace ePress
     class Czasopismo : Produkt
     {
         int czestotliwosc;
-        int datarozpoczecia;
 
-        public Czasopismo(int i, int d)
+        public Czasopismo(int i)
         {
             czestotliwosc = i;
-            datarozpoczecia = d;
         }
 
         public int Czestotliwosc()
         {
             return czestotliwosc;
-        }
-
-        public int DataRozpoczecia()
-        {
-            return datarozpoczecia;
         }
     }
 }

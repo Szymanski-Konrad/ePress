@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ePress"
         mc:Ignorable="d"
-        Title="Umowy" Height="210" Width="210">
+        Title="Umowy" Height="210" Width="210" ResizeMode="NoResize">
     <Grid>
         <WrapPanel Name="dodajautora" Visibility="Visible">
             <TextBlock Name="Imie" Text="Imie:" Width="70" Height="20" FontSize="14" Margin="5"/>

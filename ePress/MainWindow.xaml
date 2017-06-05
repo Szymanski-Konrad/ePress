@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ePress"
         mc:Ignorable="d"
-        Title="ePress" Height="400" Width="300">
+        Title="ePress" Height="400" Width="300" ResizeMode="NoResize">
     <Grid>
         <Image Height="110" Width="300" VerticalAlignment="Top" Source="ePress.png"/>
         <WrapPanel Name="wrap" VerticalAlignment="Bottom">

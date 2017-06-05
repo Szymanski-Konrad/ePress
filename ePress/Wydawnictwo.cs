@@ -14,6 +14,17 @@ namespace ePress
         List<Zlecenie> zlecenia;
         List<Zlecenie> nasprzedanie;
         private double saldo;
+        private int dzien;
+
+        public Wydawnictwo()
+        {
+            drukarnie = new List<Drukarnia>();
+            zlecenia = new List<Zlecenie>();
+            nasprzedanie = new List<Zlecenie>();
+            saldo = 15000;
+            dzien = 0;
+        }
+
         public double Saldo
         {
             get { return saldo; }
@@ -23,7 +34,7 @@ namespace ePress
                 OnPropertyChanged(nameof(Saldo));
             }
         }
-        private int dzien;
+
         public int Dzien
         {
             get { return dzien; }
@@ -44,13 +55,16 @@ namespace ePress
             }
         }
 
-        public Wydawnictwo()
+        public void Pensja(List<Autor> l)
         {
-            drukarnie = new List<Drukarnia>();
-            zlecenia = new List<Zlecenie>();
-            nasprzedanie = new List<Zlecenie>();
-            saldo = 10000;
-            dzien = 0;
+            foreach (Autor a in l)
+            {
+                if (a.PokazUmowe().GetType() == typeof(OPrace))
+                {
+                    a.konto += a.PokazUmowe().stawka;
+                    Saldo -= a.PokazUmowe().stawka;
+                }
+            }
         }
 
         public void DodajGotowe(Zlecenie z)
@@ -80,7 +94,6 @@ namespace ePress
             d.jakosc = 0;
             foreach (Drukarnia dr in drukarnie)
             {
-                
                 if (dr.jakosc > d.jakosc) d = dr;
             }
             d.DodajCoDrukuje("Album");
@@ -90,7 +103,8 @@ namespace ePress
         {
             Random r = new Random();
             Drukarnia d = new Drukarnia();
-            double cena = 1000 * ((float)d.jakosc / 5.0) * ((float)d.wydajnosc / 3500.0);
+            double cena = 2000 * ((float)d.jakosc / 5.0) * ((float)d.wydajnosc / 35000.0);
+            if (cena < 2500) cena = 2500;
             cena = Math.Round(cena);
             Saldo -= cena;
             drukarnie.Add(d);

@@ -19,6 +19,7 @@ namespace ePress
         public Autor()
         {
             umowa = new Umowa();
+            dzielo = " ";
         }
 
         public void DodajUmowe(Umowa u)

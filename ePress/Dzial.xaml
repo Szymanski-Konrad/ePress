@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ePress"
         mc:Ignorable="d"
-        Title="Dzial" Height="300" Width="600" Closing="Window_Closing">
+        Title="Dzial" Height="300" Width="750" ResizeMode="NoResize" Closing="Window_Closing">
     <Grid>
         <Grid x:Name="A">
             <DataGrid x:Name="Autors" Height="220" VerticalAlignment="Top">

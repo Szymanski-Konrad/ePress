@@ -22,15 +22,30 @@ namespace ePress
     {
         Wydawnictwo w;
         List<Autor> ListaAutorow;
+        Dane dane;
 
-        public MainWindow()
+        public MainWindow(int x)
         {
-            ListaAutorow = new List<Autor>();
             InitializeComponent();
+            ListaAutorow = new List<Autor>();
             w = new Wydawnictwo();
-            for (int i = 1; i <= 3; i++)
+            dane = new Dane();
+            if (x == 1)
             {
-                w.KupDrukarnie();
+                SetLista(dane.WczytajAutorow());
+                foreach (Drukarnia d in dane.WczytajDrukarnie())
+                {
+                    w.GetDrukarnie().Add(d);
+                }
+                dane.WczytajStanWydawnictwa(w);
+            }
+            else
+            {
+                for (int i = 1; i <= 3; i++)
+                {
+                    w.KupDrukarnie();
+                }
+                w.CoDrukujeDrukarnia();
             }
             DataContext = w;
         }
@@ -75,7 +90,9 @@ namespace ePress
 
         private void Zapis_Click(object sender, RoutedEventArgs e)
         {
-
+            dane.ZapiszAutorow(ListaAutorow);
+            dane.ZapiszDrukarnie(w.GetDrukarnie());
+            dane.ZapiszStanWydawnictwa(w);
         }
 
         private void Nowy_Click(object sender, RoutedEventArgs e)
@@ -92,6 +109,7 @@ namespace ePress
                 }
             }
             w.UsunSprzedane();
+            if (w.Dzien % 30 == 0) w.Pensja(ListaAutorow);
         }
     }
 }

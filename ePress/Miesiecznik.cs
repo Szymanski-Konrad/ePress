@@ -8,7 +8,7 @@ namespace ePress
 {
     class Miesiecznik : Czasopismo
     {
-        public Miesiecznik(int i, int d) : base(i, d)
+        public Miesiecznik(int i) : base(i)
         {
 
         }

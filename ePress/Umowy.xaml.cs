@@ -74,6 +74,9 @@ namespace ePress
 
         private void DodajAutora_Click(object sender, RoutedEventArgs e)
         {
+            if (dodajimie.Text == "") { MessageBox.Show("Podaj imie"); return; }
+            if (dodajnazwisko.Text == "") { MessageBox.Show("Podaj nazwisko"); return; }
+            if (pisze.SelectedItem == null) { MessageBox.Show("Wybierz produkt"); return; }
             Autor a = new Autor() { Imie = dodajimie.Text, konto = 0, Nazwisko = dodajnazwisko.Text, sprzedaz = 0, coPisze = pisze.SelectedItem.ToString() };
             start.DodajAutora(a);
             this.Close();
@@ -81,6 +84,7 @@ namespace ePress
 
         private void UsunAutora_Click(object sender, RoutedEventArgs e)
         {
+            if (autorzy.SelectedItem == null) { MessageBox.Show("Wybierz autora"); return; }
             start.GetAutorzy().Remove(start.GetAutorzy().Find(x => x.Imie + " " + x.Nazwisko == autorzy.SelectedItem.ToString()));
             start.Autors.Items.Clear();
             foreach (Autor item in start.GetAutorzy())
@@ -92,6 +96,12 @@ namespace ePress
 
         private void Zawrzyj_Click(object sender, RoutedEventArgs e)
         {
+            if (Typ.SelectedItem == null) { MessageBox.Show("Wybierz typ umowy"); return; }
+            if (JakiAutor.SelectedItem == null) { MessageBox.Show("Dołącz autora do umowy"); return; }
+            if (Stawka.Text == "") { MessageBox.Show("Nie zapomnij o stawce dla autora"); return; }
+            string s = "";
+            foreach (char c in Stawka.Text) if (Char.IsNumber(c)) s += c;
+            Stawka.Text = s;
             if (Typ.SelectedIndex == 0)
             {
                 OPrace u = new OPrace() { stawka = Int32.Parse(Stawka.Text) };
@@ -121,6 +131,7 @@ namespace ePress
 
         private void Rowiaz_Click(object sender, RoutedEventArgs e)
         {
+            if (WybierzAutora.SelectedItem == null) { MessageBox.Show("Wybierz autora"); return; }
             Autor a = start.GetAutorzy().Find(x => x.Imie + " " + x.Nazwisko == WybierzAutora.SelectedItem.ToString());
             a.DodajUmowe(new Umowa());
 

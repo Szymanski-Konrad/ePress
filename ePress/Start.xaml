@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ePress"
         mc:Ignorable="d"
-        Title="Start" Height="100" Width="160">
+        Title="Start" Height="110" Width="170" ResizeMode="NoResize">
     <Grid>
-        <TextBlock Name="text1" Width="150" Height="40" Text="Kup pierwszą drukarnię :)" VerticalAlignment="Top"/>
-        <Button Name="Pierwsza" Width="150" Height="40" Content="Kup teraz!" Click="Pierwsza_Click" VerticalAlignment="Bottom"/>
-        <TextBlock Name="text2" Width="150" Height="40" Text="Kup drugą drukarnię :)" VerticalAlignment="Top" Visibility="Hidden"/>
-        <Button Name="Druga" Width="150" Height="40" Content="Kup teraz!" Click="Druga_Click" VerticalAlignment="Bottom" Visibility="Hidden"/>
-        <TextBlock Name="text3" Width="150" Height="40" Text="Kup trzecią drukarnię :)" VerticalAlignment="Top" Visibility="Hidden"/>
-        <Button Name="Trzecia" Width="150" Height="40" Content="Kup teraz!" Click="Trzecia_Click" VerticalAlignment="Bottom" Visibility="Hidden"/>
+        <TextBlock Name="text1" Width="150" Height="40" Text="Kup pierwszą drukarnię :)" VerticalAlignment="Top" Margin="5"/>
+        <Button Name="Pierwsza" Width="150" Height="40" Content="Kup teraz!" Click="Pierwsza_Click" VerticalAlignment="Bottom" Margin="5"/>
+        <TextBlock Name="text2" Width="150" Height="40" Text="Kup drugą drukarnię :)" VerticalAlignment="Top" Visibility="Hidden" Margin="5"/>
+        <Button Name="Druga" Width="150" Height="40" Content="Kup teraz!" Click="Druga_Click" VerticalAlignment="Bottom" Visibility="Hidden" Margin="5"/>
+        <TextBlock Name="text3" Width="150" Height="40" Text="Kup trzecią drukarnię :)" VerticalAlignment="Top" Visibility="Hidden" Margin="5"/>
+        <Button Name="Trzecia" Width="150" Height="40" Content="Kup teraz!" Click="Trzecia_Click" VerticalAlignment="Bottom" Visibility="Hidden" Margin="5"/>
     </Grid>
 </Window>
