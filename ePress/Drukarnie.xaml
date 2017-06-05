@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ePress"
         mc:Ignorable="d"
-        Title="Drukarnie" Height="300" Width="750" ResizeMode="NoResize">
+        Title="Drukarnie" Height="300" Width="750" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
         <TabControl x:Name="tabControl">
             <TabItem Header="Drukarnia I" FontSize="14" Foreground="Green">
@@ -30,6 +30,7 @@
                         <DataGridTextColumn Header="Strony" Width="*" Binding="{Binding strony}"/>
                         <DataGridTextColumn Header="Stan" Width="*" Binding="{Binding stan}"/>
                         <DataGridTextColumn Header="Ile Dni" Width="*" Binding="{Binding iledni}"/>
+                        <DataGridTextColumn Header="Typ" Width="*" Binding="{Binding typ}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
@@ -42,6 +43,7 @@
                         <DataGridTextColumn Header="Strony" Width="*" Binding="{Binding strony}"/>
                         <DataGridTextColumn Header="Stan" Width="*" Binding="{Binding stan}"/>
                         <DataGridTextColumn Header="Ile Dni" Width="*" Binding="{Binding iledni}"/>
+                        <DataGridTextColumn Header="Typ" Width="*" Binding="{Binding typ}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>

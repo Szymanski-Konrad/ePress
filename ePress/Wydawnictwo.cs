@@ -55,6 +55,7 @@ namespace ePress
             }
         }
 
+        //wypłacanie pensji autorom zatrudnionym na umowę o pracę na koniec miesiąca
         public void Pensja(List<Autor> l)
         {
             foreach (Autor a in l)
@@ -67,11 +68,27 @@ namespace ePress
             }
         }
 
+        //zbieranie wszystkich zleceń
+        public List<Zlecenie> ZbierzZlecenia()
+        {
+            List<Zlecenie> z = new List<Zlecenie>();
+            foreach (Drukarnia d in GetDrukarnie())
+            {
+                foreach (Zlecenie zl in d.GetZlecenia())
+                {
+                    z.Add(zl);
+                }
+            }
+            return z;
+        }
+
+        //wystawienie gotowych zleceń na sprzedaż
         public void DodajGotowe(Zlecenie z)
         {
             nasprzedanie.Add(z);
         } 
 
+        //usuwanie sprzedanych pozycji
         public void UsunSprzedane()
         {
             for (int i = 0; i < nasprzedanie.Count; i++)
@@ -88,6 +105,7 @@ namespace ePress
             return drukarnie;
         }
 
+        //znajdowanie najlepszej jakościowo drukarni, aby umożliwić jej drukowanie albumów
         public void CoDrukujeDrukarnia()
         {
             Drukarnia d = new Drukarnia();
@@ -99,6 +117,7 @@ namespace ePress
             d.DodajCoDrukuje("Album");
         }
 
+        //kupowanie drukarni
         public void KupDrukarnie()
         {
             Random r = new Random();
@@ -110,6 +129,7 @@ namespace ePress
             drukarnie.Add(d);
         }
 
+        //wydawnictwo czyta książkę, aby ocenić pozycję
         public void CzytajKsiazke(Zlecenie z)
         {
             Random r = new Random();
@@ -118,22 +138,23 @@ namespace ePress
             k.naklad = 1000 * k.ocena;
         }
 
+        //ustalanie ceny sprzedaży
         public void UstalCene(Zlecenie z)
         {
             Ksiazka k = (Ksiazka)z.GetProdukt();
             double x = ((float)k.strony / 30) * ((float)k.ocena / 5);
-            MessageBox.Show(x.ToString());
             if (z.GetProdukt().GetType() == typeof(Album)) x = x * 1.5;
             k.cena = 30 * (Int32)Math.Round(x);
             if (k.cena < 3) k.cena = 3;
-            MessageBox.Show(k.cena.ToString());
         }
-
+        
+        //przyjmowanie zamównień od klientów
         public void PrzyjmijZamowienie(Zlecenie z) 
         {
             zlecenia.Add(z);
         }
 
+        //sprawdzenie, która drukarnia jest w danym momencie najmniej zajęta, aby drukowanie kolejnych zleceń przebiegało możliwie szybko
         public Drukarnia NajmniejZajeta(string typ)
         {
             Drukarnia dr = drukarnie[0];
@@ -147,6 +168,7 @@ namespace ePress
             return dr;
         }
 
+        //  metoda przedłużania tygodników oraz miesięczników, jednak nie działa do końca jak trzeba, więc nie ma faktycznej realizacji w kodzie
         //public void Przedluzanie()
         //{
         //    foreach (Drukarnia d in drukarnie)
@@ -177,6 +199,7 @@ namespace ePress
         //    }
         //}
 
+        //przydzielanie zleceń dla drukarni na koniec każdego dnia
         public void PrzydzielZlecenia()
         {
             foreach (Zlecenie z in zlecenia)

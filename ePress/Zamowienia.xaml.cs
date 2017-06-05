@@ -32,6 +32,7 @@ namespace ePress
             Typy();
         }
 
+        //uzupełnianie kontrolek w okienku
         void Typy()
         {
             typy.Items.Add("Tygodnik");
@@ -65,6 +66,7 @@ namespace ePress
             }
         } 
 
+        //metoda sprawdzająca, czy nie podano przypadkowo innych znaków niż cyfry przy wpisywaniu ilości stron
         void SprawdzStr()
         {
             string s = "";
@@ -72,6 +74,7 @@ namespace ePress
             str.Text = s;
         }
 
+        //dostosowywanie widoku okna do wybranych opcji przez użytkownika
         private void Ilu_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             TextBox t, t1;
@@ -111,6 +114,7 @@ namespace ePress
             }
         }
 
+        //dostosowywanie widoku okna do wybranych opcji przez użytkownika
         private void typy_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (typy.SelectedIndex == 0 || typy.SelectedIndex == 1)
@@ -128,15 +132,19 @@ namespace ePress
             }
         }
 
+        //dodawanie zamówienie do kolejki
         private void Dodaj_Click(object sender, RoutedEventArgs e)
         {
+            //sprawdzenie czy wszystkie dane zostały podane
             if (t.Text == "") { MessageBox.Show("Podaj tytuł"); return; }
             if (typy.SelectedItem == null) { MessageBox.Show("Wybierz typ produktu"); return; }
             if (str.Text == "") { MessageBox.Show("Podaj ilość stron"); return; }
             if (Ilu.SelectedItem == null) { MessageBox.Show("Wybierz ilość autorów"); return; }
+            if (page.GetWydawnictwo().ZbierzZlecenia().Find(x => x.GetProdukt().tytul == t.Text) != null) { MessageBox.Show("Taki tytuł już istnieje w naszej bazie"); return; } 
             TextBox t1, t2;
             ComboBox c;
             Zlecenie z = new Zlecenie() { stan = "czeka" };
+            //podział dodawania zlecenia zależnie od wybranego typu produktu
             if (typy.SelectedItem.ToString() == "Miesiecznik")
             {
                 SprawdzStr();
@@ -178,6 +186,7 @@ namespace ePress
                     t1 = (TextBox)Panel.FindName("autor" + i.ToString()); t2 = (TextBox)Panel.FindName("autor" + x.ToString());
                     if (t1.Text == "" || t2.Text == "") { MessageBox.Show("Uzupełnij dane autora"); return; }
                     Autor a = new Autor() { Imie = t1.Text, Nazwisko = t2.Text, coPisze = typy.SelectedItem.ToString() };
+                    if (page.GetLista().Find(y => y.Imie == a.Imie && y.Nazwisko == a.Nazwisko) != null) { MessageBox.Show("Taki autor już znajduje się w bazie"); return; }
                     a.DodajUmowe(new ODzielo() { stawka = 10 });
                     a.dzielo = z.GetProdukt().tytul;
                     page.DodajAutoraDoListy(a);
@@ -197,6 +206,7 @@ namespace ePress
                     t1 = (TextBox)Panel.FindName("autor" + i.ToString()); t2 = (TextBox)Panel.FindName("autor" + x.ToString());
                     if (t1.Text == "" || t2.Text == "") { MessageBox.Show("Uzupełnij dane autora"); return; }
                     Autor a = new Autor() { Imie = t1.Text, Nazwisko = t2.Text, coPisze = typy.SelectedItem.ToString() };
+                    if (page.GetLista().Find(y => y.Imie == a.Imie && y.Nazwisko == a.Nazwisko) != null) { MessageBox.Show("Taki autor już znajduje się w bazie"); return; }
                     a.DodajUmowe(new ODzielo() { stawka = 10 });
                     a.dzielo = z.GetProdukt().tytul;
                     page.DodajAutoraDoListy(a);
@@ -216,6 +226,7 @@ namespace ePress
                     t1 = (TextBox)Panel.FindName("autor" + i.ToString()); t2 = (TextBox)Panel.FindName("autor" + x.ToString());
                     if (t1.Text == "" || t2.Text == "") { MessageBox.Show("Uzupełnij dane autora"); return; }
                     Autor a = new Autor() { Imie = t1.Text, Nazwisko = t2.Text, coPisze = typy.SelectedItem.ToString() };
+                    if (page.GetLista().Find(y => y.Imie == a.Imie && y.Nazwisko == a.Nazwisko) != null) { MessageBox.Show("Taki autor już znajduje się w bazie"); return; }
                     a.DodajUmowe(new ODzielo() { stawka = 10 });
                     a.dzielo = z.GetProdukt().tytul;
                     page.DodajAutoraDoListy(a);

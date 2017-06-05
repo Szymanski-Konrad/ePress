@@ -30,6 +30,7 @@ namespace ePress
             ListaAutorow = new List<Autor>();
             w = new Wydawnictwo();
             dane = new Dane();
+            // jeśli x jest równy 1, następuje wczytanie danych z dysku
             if (x == 1)
             {
                 SetLista(dane.WczytajAutorow());
@@ -41,6 +42,7 @@ namespace ePress
             }
             else
             {
+                MessageBox.Show("Witamy w Państwa drukarni. Życzymy sukcesów :)");
                 for (int i = 1; i <= 3; i++)
                 {
                     w.KupDrukarnie();
@@ -70,24 +72,28 @@ namespace ePress
             return w;
         }
 
+        //otworzenie okna Działu Programowego
         private void DzialP_Click(object sender, RoutedEventArgs e)
         {
             Dzial d = new Dzial(this, ListaAutorow);
             d.ShowDialog();
         }
 
+        //otworzenie okna z podglądem drukarni
         private void Druk_Click(object sender, RoutedEventArgs e)
         {
             Drukarnie d = new Drukarnie(this);
             d.ShowDialog();
         }
 
+        //otworzenie okna do składania zamównień
         private void zamowienia_Click(object sender, RoutedEventArgs e)
         {
             Zamowienia z = new Zamowienia(this);
             z.ShowDialog();
         }
 
+        //zapisanie stanu systemu na dysk
         private void Zapis_Click(object sender, RoutedEventArgs e)
         {
             dane.ZapiszAutorow(ListaAutorow);
@@ -95,9 +101,11 @@ namespace ePress
             dane.ZapiszStanWydawnictwa(w);
         }
 
+        //przejście do kolejnego dnia i zaktualizowanie danych
         private void Nowy_Click(object sender, RoutedEventArgs e)
         {
             w.Dzien += 1;
+            //wszystkie zlecenia zostaną przekazane do drukarni następnego dnia
             w.PrzydzielZlecenia();
             w.Sprzedaz();
             foreach (Drukarnia d in w.GetDrukarnie())
@@ -109,6 +117,7 @@ namespace ePress
                 }
             }
             w.UsunSprzedane();
+            //wypłacanie pensji
             if (w.Dzien % 30 == 0) w.Pensja(ListaAutorow);
         }
     }

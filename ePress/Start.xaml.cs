@@ -31,6 +31,7 @@ namespace ePress
             }
         }
 
+        //metoda sprawdzająca czy na dysku znajdują się wszelkie potrzebne dane
         public bool SprawdzPliki()
         {
             if (!File.Exists("autorzy.txt")) return false;
@@ -41,6 +42,7 @@ namespace ePress
             return true;
         }
 
+        //zakup pierwszej drukarki
         private void Pierwsza_Click(object sender, RoutedEventArgs e)
         {
             Druga.Visibility = Visibility.Visible;
@@ -49,6 +51,7 @@ namespace ePress
             text1.Visibility = Visibility.Hidden;
         }
 
+        //zakup drugiej drukarki
         private void Druga_Click(object sender, RoutedEventArgs e)
         {
             Trzecia.Visibility = Visibility.Visible;
@@ -57,6 +60,7 @@ namespace ePress
             text2.Visibility = Visibility.Hidden;
         }
 
+        //zakup trzeciej drukarki
         private void Trzecia_Click(object sender, RoutedEventArgs e)
         {
             MainWindow mw = new MainWindow(0);

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ePress"
         mc:Ignorable="d"
-        Title="Start" Height="110" Width="170" ResizeMode="NoResize">
+        Title="Start" Height="110" Width="170" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
         <TextBlock Name="text1" Width="150" Height="40" Text="Kup pierwszą drukarnię :)" VerticalAlignment="Top" Margin="5"/>
         <Button Name="Pierwsza" Width="150" Height="40" Content="Kup teraz!" Click="Pierwsza_Click" VerticalAlignment="Bottom" Margin="5"/>

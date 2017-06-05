@@ -34,6 +34,7 @@ namespace ePress
             }
         }
 
+        //przetwarzanie autorów, aby możnabyło wyślwietlić ich listę
         public void UstawDataContext(Autor a)
         {
             DoWyswietlenia.DlaAutorow d = new DoWyswietlenia.DlaAutorow();
@@ -66,30 +67,35 @@ namespace ePress
             return listaAutorow;
         }
 
+        //dodawanie autora
         private void Dodaj_Click(object sender, RoutedEventArgs e)
         {
             Umowy u = new Umowy(1, this);
             u.ShowDialog();
         }
 
+        //usuwanie autora
         private void Usun_Click(object sender, RoutedEventArgs e)
         {
             Umowy u = new Umowy(2, this);
             u.ShowDialog();
         }
 
+        //zawiązywanie umowy
         private void Add_Click(object sender, RoutedEventArgs e)
         {
             Umowy u = new Umowy(3, this);
             u.ShowDialog();
         }
 
+        //rozwiązywanie umowy
         private void Del_Click(object sender, RoutedEventArgs e)
         {
             Umowy u = new Umowy(4, this);
             u.ShowDialog();
         }
 
+        //operacje wykonywane przy zamykaniu okna
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             page.SetLista(listaAutorow);

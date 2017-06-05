@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace ePress
 {
+    //klasa do zapisywania danych na dysk oraz wczytywanie danych przy uruchomieniu programu
     class Dane
     {
         public Dane()
@@ -14,6 +15,7 @@ namespace ePress
 
         }
 
+        //zapisywanie wszystkich autorów do pliku autorzy.txt
         public void ZapiszAutorow(List<Autor> autorzy) 
         {
             using (StreamWriter sw = File.CreateText("autorzy.txt"))
@@ -25,6 +27,7 @@ namespace ePress
             }
         }
 
+        //wczytywanie wszystkich autorów z pliku autorzy.txt
         public List<Autor> WczytajAutorow()
         {
             List<Autor> autorzy = new List<Autor>();
@@ -42,6 +45,7 @@ namespace ePress
             return autorzy;
         }
 
+        //zapisywanie stanu drukarni do osobnych plików
         public void ZapiszDrukarnie(List<Drukarnia> drukarnie)
         {
             int x = 1;
@@ -67,6 +71,7 @@ namespace ePress
             }
         }
 
+        //wczytywanie stanu drukarni
         public List<Drukarnia> WczytajDrukarnie()
         {
             List<Drukarnia> drukarnie = new List<Drukarnia>();
@@ -108,6 +113,7 @@ namespace ePress
             return drukarnie;
         }
 
+        //zapisywanie postępu działania wydawnictwa
         public void ZapiszStanWydawnictwa(Wydawnictwo w)
         {
             using (StreamWriter sw = File.CreateText("info.txt"))
@@ -116,6 +122,7 @@ namespace ePress
             }
         }
 
+        //wczytywanie postępu działania wydawnictwa
         public void WczytajStanWydawnictwa(Wydawnictwo w)
         {
             if (File.Exists("info.txt"))

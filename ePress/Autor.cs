@@ -10,8 +10,8 @@ namespace ePress
     {
         public string Imie { get; set; }
         public string Nazwisko { get; set; }
-        public int konto { get; set; }
-        public int sprzedaz { get; set; }
+        public int konto { get; set; }                          // get i set to są akcesorami, i dzięki nim można znacząco skrócić długość kodu
+        public int sprzedaz { get; set; }                       // kompilator i tak ustala te pola jako prywatne oraz dodaje metody dostępowe
         public string coPisze { get; set; }
         public string dzielo { get; set; }
         Umowa umowa { get; set; }
@@ -22,11 +22,13 @@ namespace ePress
             dzielo = " ";
         }
 
+        // podpisanie umowy przez autora
         public void DodajUmowe(Umowa u)
         {
             umowa = u;
         }
 
+        //wgląd w umowę autora
         public Umowa PokazUmowe()
         {
             return umowa;

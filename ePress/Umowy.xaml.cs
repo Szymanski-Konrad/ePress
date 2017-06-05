@@ -26,8 +26,10 @@ namespace ePress
             start = w;
             InitializeComponent();
             Ustaw();
+            //pokazywanie odpowiedniego trybu okna
             switch (x)
             {
+                //dodawanie autora
                 case 1:
                     usunumowe.Visibility = Visibility.Hidden;
                     dodajumowe.Visibility = Visibility.Hidden;
@@ -36,12 +38,14 @@ namespace ePress
                     pisze.Items.Add("Tygodnik");
                     pisze.Items.Add("Miesiecznik");
                     break;
+                //usuwanie autora
                 case 2:
                     usunumowe.Visibility = Visibility.Hidden;
                     dodajumowe.Visibility = Visibility.Hidden;
                     dodajautora.Visibility = Visibility.Hidden;
                     usunautora.Visibility = Visibility.Visible;
                     break;
+                //zawiązywanie umowy
                 case 3:
                     usunumowe.Visibility = Visibility.Hidden;
                     dodajautora.Visibility = Visibility.Hidden;
@@ -50,6 +54,7 @@ namespace ePress
                     Typ.Items.Add("O Prace");
                     Typ.Items.Add("O Dzielo");
                     break;
+                //rozwiązywanie umowy
                 case 4:
                     dodajumowe.Visibility = Visibility.Hidden;
                     dodajautora.Visibility = Visibility.Hidden;
@@ -78,6 +83,7 @@ namespace ePress
             if (dodajnazwisko.Text == "") { MessageBox.Show("Podaj nazwisko"); return; }
             if (pisze.SelectedItem == null) { MessageBox.Show("Wybierz produkt"); return; }
             Autor a = new Autor() { Imie = dodajimie.Text, konto = 0, Nazwisko = dodajnazwisko.Text, sprzedaz = 0, coPisze = pisze.SelectedItem.ToString() };
+            if (start.GetAutorzy().Find(y => y.Imie == a.Imie && y.Nazwisko == a.Nazwisko) != null) { MessageBox.Show("Taki autor już znajduje się w bazie"); return; }
             start.DodajAutora(a);
             this.Close();
         }
@@ -143,6 +149,7 @@ namespace ePress
             this.Close();
         }
 
+        //dostosowanie zawartości okna do wybieranych opcji
         private void Typ_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (Typ.SelectedIndex == 0) Ukryty.Text = "Ile $$$: ";

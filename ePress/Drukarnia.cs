@@ -17,14 +17,16 @@ namespace ePress
 
         public Drukarnia()
         {
+            //losowe generowanie właściwości drukarni
             Random r = new Random();
             wydajnosc = r.Next(30000, 50000);
             jakosc = r.Next(1, 10);
-            System.Threading.Thread.Sleep(500);
+            System.Threading.Thread.Sleep(500);   // uśpienie procesu, aby zwiększyć losowość zmiennych
             kolejka = new Queue<Zlecenie>();
             gotowe = new List<Zlecenie>();
             coDrukuje = new List<string>();
             zajeta = 0;
+            //uzupełnianie kontrolek w okienku
             if (coDrukuje.Count < 2)
             {
                 DodajCoDrukuje("Miesiecznik");
@@ -67,6 +69,7 @@ namespace ePress
             return gotowe;
         }
 
+        //klasa do wyświetlania zleceń ukończonych oraz tych w kolejce
         public List<Zlecenie> GetZlecenia()
         {
             List<Zlecenie> zlecenia = new List<Zlecenie>();
@@ -75,6 +78,7 @@ namespace ePress
             return zlecenia;
         }
 
+        //zgłaszanie wydruku, jeśli drukarnia skończyła drukowanie pozycji
         public void ZglaszanieWydruku()
         {
             if (kolejka.Count > 0 && kolejka.Peek().ileDni == 0)
@@ -85,6 +89,7 @@ namespace ePress
             if (kolejka.Count > 0) kolejka.Peek().stan = "drukowanie";
         }
 
+        //ustalanie czasu wydruku na podstawie nakładu produktu oraz wydajności drukarni
         public void CzasWydruku(Zlecenie z)
         {
             double x = z.GetProdukt().strony * z.GetProdukt().naklad / wydajnosc;
@@ -103,6 +108,7 @@ namespace ePress
             }
         }
 
+        //aktualizowanie stanu drukarni każdego dnia
         public void AktualizacjaDrukarni()
         {
             ZglaszanieWydruku();
