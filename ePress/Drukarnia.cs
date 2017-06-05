@@ -24,12 +24,18 @@ namespace ePress
             kolejka = new Queue<Zlecenie>();
             gotowe = new List<Zlecenie>();
             coDrukuje = new List<string>();
+            zajeta = 0;
+            DodajCoDrukuje("Miesiecznik");
+            DodajCoDrukuje("Tygodnik");
+            DodajCoDrukuje("Romans");
+            DodajCoDrukuje("Sensacja");
         }
 
         public void DodajZlecenie(Zlecenie z)
         {
             z.stan = "w kolejce";
             kolejka.Enqueue(z);
+            zajeta += z.ileDni;
         }
 
         public void DodajCoDrukuje(string s)
@@ -68,7 +74,7 @@ namespace ePress
 
         public void ZglaszanieWydruku()
         {
-            if (kolejka.Peek().ileDni == 0)
+            if (kolejka.Count > 0 && kolejka.Peek().ileDni == 0)
             {
                 kolejka.Peek().stan = "wykonane";
                 gotowe.Add(kolejka.Dequeue());
@@ -79,6 +85,20 @@ namespace ePress
         {
             double x = z.GetProdukt().strony * z.GetProdukt().naklad / wydajnosc;
             z.ileDni = (Int16)Math.Round(x);
+        }
+
+        public void RedukujCzasWydruku()
+        {
+            foreach (Zlecenie item in kolejka)
+            {
+                item.ileDni -= 1;
+            }
+        }
+
+        public void AktualizacjaDrukarni()
+        {
+            RedukujCzasWydruku();
+            ZglaszanieWydruku();
         }
     }
 }

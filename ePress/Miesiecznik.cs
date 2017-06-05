@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace ePress
 {
-    class Album : Ksiazka
+    class Miesiecznik : Czasopismo
     {
+        public Miesiecznik(int i) : base(i)
+        {
 
+        }
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ePress"
         mc:Ignorable="d"
-        Title="Dzial" Height="300" Width="550">
+        Title="Dzial" Height="300" Width="600" Closing="Window_Closing">
     <Grid>
         <Grid x:Name="A">
             <DataGrid x:Name="Autors" Height="220" VerticalAlignment="Top">
@@ -13,6 +13,7 @@
                     <DataGridTextColumn Header="Imię" Width="*" Binding="{Binding imie}"/>
                     <DataGridTextColumn Header="Nazwisko" Width="*" Binding="{Binding nazwisko}"/>
                     <DataGridTextColumn Header="CoPisze" Width="*" Binding="{Binding copisze}"/>
+                    <DataGridTextColumn Header="Dzieło" Width="*" Binding="{Binding dzielo}"/>
                     <DataGridTextColumn Header="Typ umowy" Width="*" Binding="{Binding umowa}"/>
                     <DataGridTextColumn Header="Zarobki" Width="*" Binding="{Binding wynagrodzenie}"/>
                     <DataGridTextColumn Header="Sprzedaż" Width="*" Binding="{Binding sprzedaz}"/>

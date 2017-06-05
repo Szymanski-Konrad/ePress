@@ -35,7 +35,6 @@ namespace ePress
                     dodajautora.Visibility = Visibility.Visible;
                     pisze.Items.Add("Tygodnik");
                     pisze.Items.Add("Miesiecznik");
-                    pisze.Items.Add("Album");
                     break;
                 case 2:
                     usunumowe.Visibility = Visibility.Hidden;
@@ -69,6 +68,7 @@ namespace ePress
             {
                 autorzy.Items.Add(item.Imie + " " + item.Nazwisko);
                 JakiAutor.Items.Add(item.Imie + " " + item.Nazwisko);
+                WybierzAutora.Items.Add(item.Imie + " " + item.Nazwisko);
             }
         }
 
@@ -98,8 +98,6 @@ namespace ePress
                 Autor a = start.GetAutorzy().Find(x => x.Imie + " " + x.Nazwisko == JakiAutor.SelectedItem.ToString());
                 a.DodajUmowe(u);
 
-                start.GetAutorzy().Remove(start.GetAutorzy().Find(x => x.Imie + " " + x.Nazwisko == JakiAutor.SelectedItem.ToString()));
-                start.GetAutorzy().Add(a);
                 start.Autors.Items.Clear();
                 foreach (Autor item in start.GetAutorzy())
                 {
@@ -112,20 +110,26 @@ namespace ePress
                 Autor a = start.GetAutorzy().Find(x => x.Imie + " " + x.Nazwisko == JakiAutor.SelectedItem.ToString());
                 a.DodajUmowe(u);
 
-                start.GetAutorzy().Remove(start.GetAutorzy().Find(x => x.Imie + " " + x.Nazwisko == JakiAutor.SelectedItem.ToString()));
-                start.GetAutorzy().Add(a);
                 start.Autors.Items.Clear();
                 foreach (Autor item in start.GetAutorzy())
                 {
                     start.UstawDataContext(item);
                 }
             }
-            
+            this.Close();
         }
 
         private void Rowiaz_Click(object sender, RoutedEventArgs e)
         {
+            Autor a = start.GetAutorzy().Find(x => x.Imie + " " + x.Nazwisko == WybierzAutora.SelectedItem.ToString());
+            a.DodajUmowe(new Umowa());
 
+            start.Autors.Items.Clear();
+            foreach (Autor item in start.GetAutorzy())
+            {
+                start.UstawDataContext(item);
+            }
+            this.Close();
         }
 
         private void Typ_SelectionChanged(object sender, SelectionChangedEventArgs e)

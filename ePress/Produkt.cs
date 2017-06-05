@@ -11,7 +11,6 @@ namespace ePress
         public string tytul { get; set; }
         public int cena { get; set; }
         public int naklad { get; set; }
-        public int ocena { get; set; }
         public int strony { get; set; }
 
         List<Autor> autorzy;
@@ -20,5 +19,15 @@ namespace ePress
         {
             autorzy = new List<Autor>();
         }
+
+        public List<Autor> GetAutorzy()
+        {
+            return autorzy;
+        }
+
+        public void DodajAutora(Autor a)
+        {
+            autorzy.Add(a);
+        } 
     }
 }

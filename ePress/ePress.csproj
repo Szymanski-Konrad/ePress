@@ -57,15 +57,21 @@
     </ApplicationDefinition>
     <Compile Include="Album.cs" />
     <Compile Include="Autor.cs" />
+    <Compile Include="Czasopismo.cs" />
     <Compile Include="Dane.cs" />
     <Compile Include="DoWyswietlenia.cs" />
     <Compile Include="Drukarnia.cs" />
+    <Compile Include="Ksiazka.cs" />
+    <Compile Include="Miesiecznik.cs" />
     <Compile Include="ODzielo.cs" />
     <Compile Include="OPrace.cs" />
     <Compile Include="Produkt.cs" />
+    <Compile Include="Romans.cs" />
+    <Compile Include="Sensacja.cs" />
     <Compile Include="Start.xaml.cs">
       <DependentUpon>Start.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Tygodnik.cs" />
     <Compile Include="Umowa.cs" />
     <Compile Include="Umowy.xaml.cs">
       <DependentUpon>Umowy.xaml</DependentUpon>

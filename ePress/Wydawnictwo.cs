@@ -12,8 +12,17 @@ namespace ePress
     {
         List<Drukarnia> drukarnie;
         List<Zlecenie> zlecenia;
-        List<DateTime> terminy;
-        public double saldo { get; set; }
+        List<Zlecenie> nasprzedanie;
+        private double saldo;
+        public double Saldo
+        {
+            get { return saldo; }
+            set
+            {
+                saldo = value;
+                OnPropertyChanged(nameof(Saldo));
+            }
+        }
         private int dzien;
         public int Dzien
         {
@@ -39,9 +48,25 @@ namespace ePress
         {
             drukarnie = new List<Drukarnia>();
             zlecenia = new List<Zlecenie>();
-            terminy = new List<DateTime>();
+            nasprzedanie = new List<Zlecenie>();
             saldo = 10000;
             dzien = 0;
+        }
+
+        public void DodajGotowe(Zlecenie z)
+        {
+            nasprzedanie.Add(z);
+        } 
+
+        public void UsunSprzedane()
+        {
+            for (int i = 0; i < nasprzedanie.Count; i++)
+            {
+                if (nasprzedanie[i].GetProdukt().naklad == 0)
+                {
+                    nasprzedanie.Remove(nasprzedanie[i]);
+                }
+            }
         }
 
         public List<Drukarnia> GetDrukarnie()
@@ -55,6 +80,7 @@ namespace ePress
             d.jakosc = 0;
             foreach (Drukarnia dr in drukarnie)
             {
+                
                 if (dr.jakosc > d.jakosc) d = dr;
             }
             d.DodajCoDrukuje("Album");
@@ -64,25 +90,28 @@ namespace ePress
         {
             Random r = new Random();
             Drukarnia d = new Drukarnia();
-            double cena = 2000 * (d.jakosc / 5.0) * (d.wydajnosc / 3500.0);
+            double cena = 1000 * ((float)d.jakosc / 5.0) * ((float)d.wydajnosc / 3500.0);
             cena = Math.Round(cena);
-            MessageBox.Show(cena.ToString());
-            saldo -= cena;
+            Saldo -= cena;
             drukarnie.Add(d);
         }
 
         public void CzytajKsiazke(Zlecenie z)
         {
             Random r = new Random();
-            z.GetProdukt().ocena = r.Next(1, 10);
-            z.GetProdukt().naklad = 5000 * z.GetProdukt().ocena;
+            Ksiazka k = (Ksiazka)z.GetProdukt();
+            k.ocena = r.Next(1, 10);
+            k.naklad = 5000 * k.ocena;
         }
 
         public void UstalCene(Zlecenie z)
         {
-            double x = (z.GetProdukt().strony / 300) * (z.GetProdukt().ocena / 5);
+            Ksiazka k = (Ksiazka)z.GetProdukt();
+            double x = ((float)k.strony / 30) * ((float)k.ocena / 5);
+            MessageBox.Show(x.ToString());
             if (z.GetProdukt().GetType() == typeof(Album)) x = x * 1.5;
-            z.GetProdukt().cena = 30 * (Int32)Math.Round(x);
+            k.cena = 30 * (Int32)Math.Round(x);
+            MessageBox.Show(k.cena.ToString());
         }
 
         public void PrzyjmijZamowienie(Zlecenie z) 
@@ -95,44 +124,56 @@ namespace ePress
             Drukarnia dr = drukarnie[0];
             foreach (Drukarnia d in drukarnie)
             {
-                if (d.zajeta < dr.zajeta && d.CzyMozeDrukowac(typ) == true) dr = d;
+                if (d.zajeta < dr.zajeta && d.CzyMozeDrukowac(typ) == true)
+                {
+                    dr = d;
+                }
             }
             return dr;
         }
 
-        public void PrzydzielZlecenie(Zlecenie z)
+        public void PrzydzielZlecenia()
         {
-            Drukarnia d = NajmniejZajeta(z.GetProdukt().GetType().ToString());
-            d.CzasWydruku(z);
-            d.DodajZlecenie(z);
+            foreach (Zlecenie z in zlecenia)
+            {
+                MessageBox.Show(z.GetProdukt().GetType().Name);
+                Drukarnia d = NajmniejZajeta(z.GetProdukt().GetType().Name);
+                d.CzasWydruku(z);
+                d.DodajZlecenie(z);
+            }
+            zlecenia.Clear();
         }
 
         //sprzedawanie produktu jeśli jest gotowa codziennie aż do wyczerpania nakładu
-        public void SprzedazKsiazki(Zlecenie z)
+        public void Sprzedaz()
         {
-            if (z.stan == "wykonane" && z.GetProdukt().naklad > 0)
+            foreach (Zlecenie z in nasprzedanie)
             {
-                if (z.GetProdukt().naklad < 1000)
+                if (z.GetProdukt().naklad > 0)
                 {
-                    saldo += z.GetProdukt().cena * z.GetProdukt().naklad;
-                    // oddawanie części kasy dla autorów danej książki
-                    foreach (var item in z.GetProdukt().tytul)
+                    if (z.GetProdukt().naklad < 1000)
                     {
-
+                        Saldo += z.GetProdukt().cena * z.GetProdukt().naklad;
+                        // oddawanie części kasy dla autorów danej książki
+                        foreach (Autor item in z.GetProdukt().GetAutorzy())
+                        {
+                            item.sprzedaz += z.GetProdukt().naklad;
+                            item.konto += z.GetProdukt().cena * z.GetProdukt().naklad;
+                        }
+                        z.GetProdukt().naklad = 0;
                     }
-                    z.GetProdukt().naklad = 0;
-                    
-                }
-                else
-                {
-                    int ilosc = (Int32)Math.Round(z.GetProdukt().naklad * 0.6);
-                    // oddawanie części kasy dla autorów danej książki
-                    foreach (var item in z.GetProdukt().tytul)
+                    else
                     {
-
+                        int ilosc = (Int32)Math.Round(z.GetProdukt().naklad * 0.6);
+                        // oddawanie części kasy dla autorów danej książki
+                        foreach (Autor item in z.GetProdukt().GetAutorzy())
+                        {
+                            item.sprzedaz += ilosc;
+                            item.konto += z.GetProdukt().cena * ilosc;
+                        }
+                        Saldo += z.GetProdukt().cena * ilosc;
+                        z.GetProdukt().naklad -= ilosc;
                     }
-                    saldo += z.GetProdukt().cena * ilosc;
-                    z.GetProdukt().naklad -= ilosc;
                 }
             }
         }

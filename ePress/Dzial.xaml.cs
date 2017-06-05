@@ -22,11 +22,16 @@ namespace ePress
         MainWindow page;
         List<Autor> listaAutorow;
 
-        public Dzial(MainWindow start)
+        public Dzial(MainWindow start, List<Autor> l)
         {
             page = start;
             InitializeComponent();
             listaAutorow = new List<Autor>();
+            foreach (Autor a in l)
+            {
+                listaAutorow.Add(a);
+                UstawDataContext(a);
+            }
         }
 
         public void UstawDataContext(Autor a)
@@ -38,6 +43,7 @@ namespace ePress
             d.copisze = a.coPisze;
             d.wynagrodzenie = a.PokazUmowe().stawka.ToString();
             d.zysk = a.konto;
+            d.dzielo = a.dzielo;
             if (a.PokazUmowe().GetType() == typeof(OPrace)) d.umowa = "O Prace";
             if (a.PokazUmowe().GetType() == typeof(ODzielo))
             {
@@ -82,6 +88,11 @@ namespace ePress
         {
             Umowy u = new Umowy(4, this);
             u.ShowDialog();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            page.SetLista(listaAutorow);
         }
     }
 }

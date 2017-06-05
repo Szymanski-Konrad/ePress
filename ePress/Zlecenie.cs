@@ -13,9 +13,18 @@ namespace ePress
         public string stan { get; set; }
         public int ileDni { get; set; }
 
-        public Zlecenie(Drukarnia d, Produkt p)
+        public Zlecenie()
+        {
+            produkt = new Produkt();
+        }
+
+        public void UstawDrukarnie(Drukarnia d)
         {
             drukarnia = d;
+        }
+
+        public void UstawProdukt(Produkt p)
+        {
             produkt = p;
         }
 

@@ -29,6 +29,7 @@ namespace ePress
             public int sprzedaz { get; set; }
             public int zysk { get; set; }
             public string copisze { get; set; }
+            public string dzielo { get; set; }
         }
 
     }

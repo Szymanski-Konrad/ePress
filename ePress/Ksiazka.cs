@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace ePress
 {
-    class Album : Ksiazka
+    class Ksiazka : Produkt
     {
-
+        public int ocena { get; set; }
+        public int dataWydania { get; set; }
     }
 }

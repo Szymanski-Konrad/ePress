@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Umowy" Height="210" Width="210">
     <Grid>
-        <WrapPanel Name="dodajautora" Visibility="Hidden">
+        <WrapPanel Name="dodajautora" Visibility="Visible">
             <TextBlock Name="Imie" Text="Imie:" Width="70" Height="20" FontSize="14" Margin="5"/>
             <TextBox Name="dodajimie" Width="80" Height="30" Margin="5"/>
             <TextBlock Name="Nazwisko" Text="Nazwisko:" Width="70" Height="20" FontSize="14" Margin="5"/>
@@ -20,7 +20,7 @@
             <ComboBox Name="autorzy" Height="40" Width="140" Margin="10"/>
             <Button Name="UsunAutora" Content="Usuń" FontSize="15" Height="40" Width="120" Margin="20,10,10,10" Click="UsunAutora_Click"/>
         </WrapPanel>
-        <WrapPanel Name="dodajumowe" HorizontalAlignment="Center" Visibility="Visible">
+        <WrapPanel Name="dodajumowe" HorizontalAlignment="Center" Visibility="Hidden">
             <TextBlock Text="Typ umowy: " FontSize="14" Height="30" Width="80" Margin="5"/>
             <ComboBox Name="Typ" Height="30" Width="90" Margin="5" SelectionChanged="Typ_SelectionChanged"/>
             <TextBlock Text="Autor: " FontSize="14" Height="30" Width="80" Margin="5"/>

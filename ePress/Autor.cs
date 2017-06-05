@@ -13,6 +13,7 @@ namespace ePress
         public int konto { get; set; }
         public int sprzedaz { get; set; }
         public string coPisze { get; set; }
+        public string dzielo { get; set; }
         Umowa umowa { get; set; }
 
         public Autor()

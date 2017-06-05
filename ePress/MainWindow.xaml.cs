@@ -21,18 +21,33 @@ namespace ePress
     public partial class MainWindow : Window
     {
         Wydawnictwo w;
-        Dzial dzial;
+        List<Autor> ListaAutorow;
 
         public MainWindow()
         {
+            ListaAutorow = new List<Autor>();
             InitializeComponent();
             w = new Wydawnictwo();
-            dzial = new Dzial(this);
             for (int i = 1; i <= 3; i++)
             {
                 w.KupDrukarnie();
             }
             DataContext = w;
+        }
+
+        public void DodajAutoraDoListy(Autor a)
+        {
+            ListaAutorow.Add(a);
+        }
+
+        public void SetLista(List<Autor> l)
+        {
+            ListaAutorow = l;
+        }
+
+        public List<Autor> GetLista()
+        {
+            return ListaAutorow;
         }
 
         public Wydawnictwo GetWydawnictwo()
@@ -42,9 +57,8 @@ namespace ePress
 
         private void DzialP_Click(object sender, RoutedEventArgs e)
         {
-            Dzial d = new Dzial(this);
+            Dzial d = new Dzial(this, ListaAutorow);
             d.ShowDialog();
-            dzial = d;
         }
 
         private void Druk_Click(object sender, RoutedEventArgs e)
@@ -67,6 +81,17 @@ namespace ePress
         private void Nowy_Click(object sender, RoutedEventArgs e)
         {
             w.Dzien += 1;
+            w.PrzydzielZlecenia();
+            foreach (Drukarnia d in w.GetDrukarnie())
+            {
+                d.AktualizacjaDrukarni();
+                foreach (Zlecenie z in d.GetGotowe())
+                {
+                    w.DodajGotowe(z);
+                }
+            }
+            w.Sprzedaz();
+            w.UsunSprzedane();
         }
     }
 }

@@ -9,7 +9,7 @@
     <Grid>
         <Image Height="110" Width="300" VerticalAlignment="Top" Source="ePress.png"/>
         <WrapPanel Name="wrap" VerticalAlignment="Bottom">
-            <TextBlock Name="Saldo" Height="50" Width="120" Margin="10" FontSize="14" Text="{Binding Path=saldo}"/>
+            <TextBlock Name="Saldo" Height="50" Width="120" Margin="10" FontSize="14" Text="{Binding Path=Saldo}"/>
             <TextBlock Name="Dzien" Height="50" Width="120" Margin="10" FontSize="14" Text="{Binding Path=Dzien}"/>
             <Button x:Name="DzialP" Content="Dział Programowy" Height="50" Width="120" Margin="10" Click="DzialP_Click"/>
             <Button x:Name="Druk" Content="Drukarnie" Height="50" Width="120" Margin="10"  Click="Druk_Click"/>

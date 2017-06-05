@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ePress
 {
-    class Album : Ksiazka
+    class Romans : Ksiazka
     {
 
     }

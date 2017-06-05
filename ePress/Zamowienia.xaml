@@ -5,17 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ePress"
         mc:Ignorable="d"
-        Title="Zamowienia" Height="400" Width="240">
+        Title="Zamowienia" Height="450" Width="240">
     <Grid>
-        <WrapPanel Name="Panel">
+        <WrapPanel>
             <TextBlock Text="Tytuł" Height="30" Width="100" Margin="5"/>
-            <TextBox Text="" Height="30" Width="100" Margin="5"/>
-            <TextBlock Text="Typ Książki" Height="30" Width="100" Margin="5"/>
-            <ComboBox Height="30" Width="100" Margin="5"/>
+            <TextBox Name="t" Text="" Height="30" Width="100" Margin="5"/>
+            <TextBlock Text="Typ zamówienia" Height="30" Width="100" Margin="5"/>
+            <ComboBox Name="typy" Height="30" Width="100" Margin="5" SelectionChanged="typy_SelectionChanged"/>
             <TextBlock Text="Ilość stron" Height="30" Width="100" Margin="5"/>
-            <TextBox Height="30" Width="100" Margin="5"/>
+            <TextBox Name="str" Height="30" Width="100" Margin="5"/>
             <TextBlock Text="Ilu autorów" Height="30" Width="100" Margin="5"/>
             <ComboBox Name="Ilu" Height="30" Width="100" Margin="5" SelectionChanged="Ilu_SelectionChanged"/>
+        </WrapPanel>
+        <WrapPanel Name="Panel" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,60" Visibility="Hidden">
+            <TextBlock Name="i" Text="Imię:" Height="30" Width="100" Margin="5" Visibility="Hidden"/>
+            <TextBlock Name="n" Text="Nazwisko:" Width="100" Margin="5" Visibility="Hidden"/>
             <TextBox Name="autor1" Height="30" Width="100" Margin="5" Visibility="Hidden"/>
             <TextBox Name="autor2" Height="30" Width="100" Margin="5" Visibility="Hidden"/>
             <TextBox Name="autor3" Height="30" Width="100" Margin="5" Visibility="Hidden"/>
@@ -24,7 +28,14 @@
             <TextBox Name="autor6" Height="30" Width="100" Margin="5" Visibility="Hidden"/>
             <TextBox Name="autor7" Height="30" Width="100" Margin="5" Visibility="Hidden"/>
             <TextBox Name="autor8" Height="30" Width="100" Margin="5" Visibility="Hidden"/>
-            <Button Name="Dodaj" FontSize="15" Height="40" Width="150" Content="Dodaj zamówienie" Margin="30,5,5,5" Click="Dodaj_Click"/>
         </WrapPanel>
+        <StackPanel Name="Wybor" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,60" Visibility="Hidden">
+            <TextBlock Text="Wybierz autorów:" Margin="5"/>
+            <ComboBox Name="combo1" Height="30" Width="150" Margin="5" Visibility="Hidden"/>
+            <ComboBox Name="combo2" Height="30" Width="150" Margin="5" Visibility="Hidden"/>
+            <ComboBox Name="combo3" Height="30" Width="150" Margin="5" Visibility="Hidden"/>
+            <ComboBox Name="combo4" Height="30" Width="150" Margin="5" Visibility="Hidden"/>
+        </StackPanel>
+        <Button Name="Dodaj" VerticalAlignment="Bottom" FontSize="15" Height="40" Width="150" Content="Dodaj zamówienie" Margin="30,5,5,5" Click="Dodaj_Click"/>
     </Grid>
 </Window>
