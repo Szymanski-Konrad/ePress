@@ -82,6 +82,7 @@ namespace ePress
         {
             w.Dzien += 1;
             w.PrzydzielZlecenia();
+            w.Sprzedaz();
             foreach (Drukarnia d in w.GetDrukarnie())
             {
                 d.AktualizacjaDrukarni();
@@ -90,7 +91,6 @@ namespace ePress
                     w.DodajGotowe(z);
                 }
             }
-            w.Sprzedaz();
             w.UsunSprzedane();
         }
     }

@@ -128,7 +128,7 @@ namespace ePress
             Zlecenie z = new Zlecenie() { stan = "czeka" };
             if (typy.SelectedItem.ToString() == "Miesiecznik")
             {
-                z.UstawProdukt(new Miesiecznik(30) { tytul = t.Text, strony = Int32.Parse(str.Text), naklad = 8000, cena = 10 });
+                z.UstawProdukt(new Miesiecznik(30, page.GetWydawnictwo().Dzien) { tytul = t.Text, strony = Int32.Parse(str.Text), naklad = 8000, cena = 10 });
                 page.GetWydawnictwo().PrzyjmijZamowienie(z);
                 for (int i = 1; i <= (Int32)Ilu.SelectedItem; i ++)
                 {
@@ -139,7 +139,7 @@ namespace ePress
             }
             if (typy.SelectedItem.ToString() == "Tygodnik")
             {
-                z.UstawProdukt(new Tygodnik(7) { tytul = t.Text, strony = Int32.Parse(str.Text), naklad = 2000, cena = 2 });
+                z.UstawProdukt(new Tygodnik(7, page.GetWydawnictwo().Dzien) { tytul = t.Text, strony = Int32.Parse(str.Text), naklad = 2000, cena = 2 });
                 page.GetWydawnictwo().PrzyjmijZamowienie(z);
                 for (int i = 1; i <= (Int32)Ilu.SelectedItem; i++)
                 {
@@ -196,6 +196,7 @@ namespace ePress
                     z.GetProdukt().DodajAutora(a);
                 }
             }
+            this.Close();
         }
     }
 }

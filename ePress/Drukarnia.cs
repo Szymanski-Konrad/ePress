@@ -19,7 +19,7 @@ namespace ePress
         public Drukarnia()
         {
             Random r = new Random();
-            wydajnosc = r.Next(3000, 4000);
+            wydajnosc = r.Next(30000, 40000);
             jakosc = r.Next(1, 10);
             kolejka = new Queue<Zlecenie>();
             gotowe = new List<Zlecenie>();
@@ -85,6 +85,10 @@ namespace ePress
         {
             double x = z.GetProdukt().strony * z.GetProdukt().naklad / wydajnosc;
             z.ileDni = (Int16)Math.Round(x);
+            foreach (Zlecenie item in kolejka)
+            {
+                z.ileDni += item.ileDni;
+            }
         }
 
         public void RedukujCzasWydruku()
@@ -97,8 +101,8 @@ namespace ePress
 
         public void AktualizacjaDrukarni()
         {
-            RedukujCzasWydruku();
             ZglaszanieWydruku();
+            RedukujCzasWydruku();
         }
     }
 }

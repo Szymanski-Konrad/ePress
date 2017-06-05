@@ -101,7 +101,7 @@ namespace ePress
             Random r = new Random();
             Ksiazka k = (Ksiazka)z.GetProdukt();
             k.ocena = r.Next(1, 10);
-            k.naklad = 5000 * k.ocena;
+            k.naklad = 1000 * k.ocena;
         }
 
         public void UstalCene(Zlecenie z)
@@ -111,6 +111,7 @@ namespace ePress
             MessageBox.Show(x.ToString());
             if (z.GetProdukt().GetType() == typeof(Album)) x = x * 1.5;
             k.cena = 30 * (Int32)Math.Round(x);
+            if (k.cena < 3) k.cena = 3;
             MessageBox.Show(k.cena.ToString());
         }
 
@@ -132,11 +133,40 @@ namespace ePress
             return dr;
         }
 
+        //public void Przedluzanie()
+        //{
+        //    foreach (Drukarnia d in drukarnie)
+        //    {
+        //        foreach (Zlecenie z in d.GetZlecenia())
+        //        {
+        //            if (z.GetProdukt().GetType().Name == "Tygodnik")
+        //            {
+        //                Tygodnik t = (Tygodnik)z.GetProdukt();
+        //                if ( (Dzien - t.DataRozpoczecia()) % t.Czestotliwosc()  == 0)
+        //                {
+        //                    Zlecenie zl = new Zlecenie() { stan = "czeka" };
+        //                    PrzyjmijZamowienie(zl);
+        //                }
+        //            }
+        //            if (z.GetProdukt().GetType().Name == "Miesiecznik")
+        //            {
+        //                Miesiecznik m = (Miesiecznik)z.GetProdukt();
+        //                if ((Dzien - m.DataRozpoczecia()) % m.Czestotliwosc() == 0)
+        //                {
+        //                    Zlecenie zl = new Zlecenie() { stan = "czeka" };
+        //                    zl.UstawProdukt(new Miesiecznik(30, Dzien) { tytul = m.tytul + (Dzien / m.Czestotliwosc()), cena = m.cena, naklad = m.naklad, strony = m.strony });
+        //                    foreach (Autor a in m.GetAutorzy()) zl.GetProdukt().DodajAutora(a);
+        //                    PrzyjmijZamowienie(zl);
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
+
         public void PrzydzielZlecenia()
         {
             foreach (Zlecenie z in zlecenia)
             {
-                MessageBox.Show(z.GetProdukt().GetType().Name);
                 Drukarnia d = NajmniejZajeta(z.GetProdukt().GetType().Name);
                 d.CzasWydruku(z);
                 d.DodajZlecenie(z);
@@ -154,22 +184,28 @@ namespace ePress
                     if (z.GetProdukt().naklad < 1000)
                     {
                         Saldo += z.GetProdukt().cena * z.GetProdukt().naklad;
-                        // oddawanie części kasy dla autorów danej książki
+                        // oddawanie części zarobków dla autorów danej książki
                         foreach (Autor item in z.GetProdukt().GetAutorzy())
                         {
-                            item.sprzedaz += z.GetProdukt().naklad;
-                            item.konto += z.GetProdukt().cena * z.GetProdukt().naklad;
+                            if (item.PokazUmowe().GetType() == typeof(ODzielo))
+                            {
+                                item.sprzedaz += z.GetProdukt().naklad;
+                                item.konto += z.GetProdukt().cena * z.GetProdukt().naklad;
+                            }
                         }
                         z.GetProdukt().naklad = 0;
                     }
                     else
                     {
-                        int ilosc = (Int32)Math.Round(z.GetProdukt().naklad * 0.6);
-                        // oddawanie części kasy dla autorów danej książki
+                        int ilosc = (Int32)Math.Round(z.GetProdukt().naklad * 0.3);
+                        // oddawanie części zarobków dla autorów danej książki
                         foreach (Autor item in z.GetProdukt().GetAutorzy())
                         {
-                            item.sprzedaz += ilosc;
-                            item.konto += z.GetProdukt().cena * ilosc;
+                            if (item.PokazUmowe().GetType() == typeof(ODzielo))
+                            {
+                                item.sprzedaz += ilosc;
+                                item.konto += z.GetProdukt().cena * ilosc;
+                            }
                         }
                         Saldo += z.GetProdukt().cena * ilosc;
                         z.GetProdukt().naklad -= ilosc;
